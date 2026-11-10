@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ownwise — Scan your home. Own it wisely.</title>
+<meta name="description" content="Scan your home in 60 seconds and get a verified, living asset register for insurance, tax depreciation and your consumer rights.">
+<meta name="theme-color" content="#3730A3">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F5FA; --surface:#FFFFFF; --surface-2:#F0F0F7; --ink:#12122A; --ink-2:#4A4A66; --ink-3:#83839C;
+  --line:#E6E6F0; --brand:#4F46E5; --brand-2:#7C3AED; --brand-ink:#3730A3; --brand-soft:#EEEDFF; --coral:#FF6B4A; --coral-soft:#FFEDE8;
+  --good:#0E9F6E; --good-soft:#E0F6EE; --warn:#B7790B; --warn-soft:#FFF4DA; --danger:#DC3E3E; --danger-soft:#FDECEC;
+  --shadow:0 1px 2px rgba(18,18,42,.04),0 8px 28px rgba(18,18,42,.07); --radius:20px;
+  --grad:linear-gradient(135deg,#6366F1 0%,#7C3AED 55%,#A855F7 100%);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B0B17; --surface:#14142A; --surface-2:#1C1C36; --ink:#EDEDF7; --ink-2:#B3B3CC; --ink-3:#7F7F9C;
+  --line:#26264A; --brand:#8B85FF; --brand-ink:#C2BEFF; --brand-soft:#232250; --coral-soft:#3A2220;
+  --good:#3DD6A3; --good-soft:#123329; --warn:#F2B740; --warn-soft:#3A2F14; --danger:#FF7676; --danger-soft:#3D1D22;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B0B17; --surface:#14142A; --surface-2:#1C1C36; --ink:#EDEDF7; --ink-2:#B3B3CC; --ink-3:#7F7F9C;
+  --line:#26264A; --brand:#8B85FF; --brand-ink:#C2BEFF; --brand-soft:#232250; --coral-soft:#3A2220;
+  --good:#3DD6A3; --good-soft:#123329; --warn:#F2B740; --warn-soft:#3A2F14; --danger:#FF7676; --danger-soft:#3D1D22;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+button,input,select,textarea{font:inherit;color:inherit}
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:0;height:100vh;padding:22px 14px;border-right:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 10px 20px;font-weight:900;font-size:21px;letter-spacing:-.03em}
+.brand svg{width:36px;height:36px}
+.nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:14px;color:var(--ink-2);text-decoration:none;font-weight:600}
+.nav a:hover{background:var(--surface-2);color:var(--ink)}
+.nav a.active{background:var(--brand-soft);color:var(--brand-ink)}
+.nav svg{width:21px;height:21px;flex:none}
+.nav .badge{margin-left:auto;background:var(--coral);color:#fff;border-radius:99px;font-size:11px;font-weight:800;padding:1px 7px}
+.scanbtn{margin:14px 0 6px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-radius:16px;border:none;background:var(--grad);color:#fff;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 10px 24px rgba(99,102,241,.35)}
+.scanbtn svg{width:20px;height:20px}
+.side-foot{margin-top:auto;padding:12px;border-radius:14px;background:var(--surface-2);font-size:12.5px;color:var(--ink-2)}
+main{padding:30px 38px 120px;max-width:1180px;width:100%}
+.top{display:flex;align-items:flex-end;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.top h1{font-size:30px;letter-spacing:-.035em;margin:0;font-weight:900;line-height:1.1}
+.top .sub{color:var(--ink-3);font-size:14.5px;margin-top:4px}
+.top .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);min-width:0}
+.card h3{margin:0 0 3px;font-size:16.5px;letter-spacing:-.015em}
+.muted{color:var(--ink-3);font-size:13.5px}
+.hero{background:var(--grad);color:#fff;border:none;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .muted{color:rgba(255,255,255,.8)}
+.big{font-size:40px;font-weight:900;letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .label{color:var(--ink-3);font-size:13px;font-weight:600}
+.kpi .val{font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:10px 15px;border-radius:13px;font-weight:700;cursor:pointer;font-size:14px;white-space:nowrap}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.grad{background:var(--grad);border:none;color:#fff}
+.btn.white{background:#fff;color:#3730A3;border:none}
+.btn.coral{background:var(--coral);border-color:var(--coral);color:#fff}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{padding:7px 11px;font-size:13px;border-radius:11px}
+.btn.danger{color:var(--danger)}
+.btn svg{width:16px;height:16px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}.chip.warn{background:var(--warn-soft);color:var(--warn)}.chip.bad{background:var(--danger-soft);color:var(--danger)}.chip.brand{background:var(--brand-soft);color:var(--brand-ink)}.chip.coral{background:var(--coral-soft);color:var(--coral)}
+.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.wrap{flex-wrap:wrap}
+.stack>*+*{margin-top:12px}
+label.f{display:block;font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:5px}
+.input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);outline:none}
+.input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tablewrap{overflow-x:auto}
+.empty{text-align:center;padding:36px 20px;color:var(--ink-3)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:13px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:none;background:transparent;padding:8px 13px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink-2)}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.callout{border-radius:14px;padding:13px 15px;background:var(--brand-soft);font-size:13.5px}
+.callout.coral{background:var(--coral-soft)}.callout.good{background:var(--good-soft)}.callout.warn{background:var(--warn-soft)}.callout.bad{background:var(--danger-soft)}
+/* Score ring */
+.ring{position:relative;width:132px;height:132px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .n{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .n b{font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.ring .n span{font-size:11px;opacity:.8;display:block;margin-top:2px;font-weight:600}
+/* Feed */
+.moment{display:flex;gap:14px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);align-items:flex-start}
+.moment+.moment{margin-top:12px}
+.moment .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none;font-size:22px;background:var(--surface-2)}
+.moment .ic.bad{background:var(--danger-soft)}.moment .ic.brand{background:var(--brand-soft)}.moment .ic.good{background:var(--good-soft)}.moment .ic.warn{background:var(--warn-soft)}.moment .ic.coral{background:var(--coral-soft)}
+.moment .mt{display:block;font-weight:800;font-size:15px;letter-spacing:-.01em}
+.moment p{margin:3px 0 10px;color:var(--ink-2);font-size:13.5px}
+.moment .tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+/* Asset tiles */
+.places{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;margin-bottom:18px}
+.place{flex:none;min-width:210px;border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--surface);cursor:pointer;text-align:left}
+.place.on{border-color:var(--brand);background:var(--brand-soft)}
+.place .e{font-size:22px}
+.place b{display:block;margin-top:4px;font-size:14.5px}
+.place small{color:var(--ink-3);font-size:12.5px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.tile{border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
+.tile:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(18,18,42,.12)}
+.tile .pic{height:118px;display:grid;place-items:center;font-size:46px;position:relative}
+.tile .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile .pic .badges{position:absolute;left:8px;top:8px;right:8px;display:flex;gap:5px;flex-wrap:wrap}
+.tile .pic .st{position:absolute;right:8px;bottom:8px;font-size:11px}
+.tile .pic .chip{box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.tile .body{padding:12px 14px 14px}
+.tile .nm{font-weight:800;font-size:14px;line-height:1.3;letter-spacing:-.01em}
+.tile .meta{font-size:12px;color:var(--ink-3);margin-top:2px}
+.tile .v{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;color:var(--ink-3)}
+.tile .v b{color:var(--ink)}
+.roomhead{display:flex;align-items:center;gap:10px;margin:22px 0 10px;font-weight:800;font-size:15px}
+.roomhead span{color:var(--ink-3);font-weight:600;font-size:13px}
+.clock{height:7px;border-radius:99px;background:var(--surface-2);position:relative;overflow:hidden}
+.clock i{position:absolute;top:0;bottom:0;border-radius:99px}
+/* Modal / sheet */
+.modal-bg{position:fixed;inset:0;background:rgba(8,8,22,.55);display:grid;place-items:center;padding:16px;z-index:50;backdrop-filter:blur(4px);animation:fade .15s}
+.modal{background:var(--surface);border-radius:26px;max-width:700px;width:100%;max-height:94vh;overflow:auto;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:pop .18s}
+.modal h2{margin:0 0 4px;font-size:23px;letter-spacing:-.03em}
+@keyframes fade{from{opacity:0}}@keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}}
+.hero-pic{height:190px;border-radius:20px;display:grid;place-items:center;font-size:84px;position:relative;overflow:hidden;margin:-6px -6px 16px}
+.hero-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.opt{display:block;border:1.5px solid var(--line);border-radius:14px;padding:11px 14px;cursor:pointer;margin-bottom:8px}
+.opt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.opt input{margin-right:8px}
+.letter{white-space:pre-wrap;font-family:ui-serif,Georgia,serif;font-size:14px;line-height:1.6;background:var(--surface-2);border-radius:14px;padding:18px;border:1px solid var(--line)}
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:14px;font-weight:700;z-index:80;box-shadow:var(--shadow);font-size:14px;max-width:90vw;text-align:center}
+/* Scanner */
+.scanner{position:relative;border-radius:22px;overflow:hidden;background:#0b0b17;aspect-ratio:16/10}
+.scanner video,.scanner img.shot,.scanner svg.room{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scanner .beam{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#A5B4FC,transparent);box-shadow:0 0 18px 6px rgba(129,140,248,.55);animation:beam 2.2s ease-in-out infinite}
+@keyframes beam{0%{top:4%}50%{top:94%}100%{top:4%}}
+.scanner .corners{position:absolute;inset:14px;border-radius:16px;pointer-events:none;background:
+ linear-gradient(#fff,#fff) top left/26px 3px no-repeat,linear-gradient(#fff,#fff) top left/3px 26px no-repeat,
+ linear-gradient(#fff,#fff) top right/26px 3px no-repeat,linear-gradient(#fff,#fff) top right/3px 26px no-repeat,
+ linear-gradient(#fff,#fff) bottom left/26px 3px no-repeat,linear-gradient(#fff,#fff) bottom left/3px 26px no-repeat,
+ linear-gradient(#fff,#fff) bottom right/26px 3px no-repeat,linear-gradient(#fff,#fff) bottom right/3px 26px no-repeat;opacity:.85}
+.det{position:absolute;border:2px solid #A5B4FC;border-radius:10px;background:rgba(99,102,241,.12);animation:det .35s ease-out both}
+.det.lb span{top:auto;bottom:-26px}.det.lr span{left:auto;right:-2px}
+.det span{position:absolute;left:-2px;top:-26px;background:#6366F1;color:#fff;font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:8px;white-space:nowrap}
+@keyframes det{from{opacity:0;transform:scale(1.15)}}
+.scanhud{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:700;font-size:13px}
+.scanhud .pill{background:rgba(10,10,30,.6);backdrop-filter:blur(6px);padding:7px 12px;border-radius:99px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mode{border:1.5px solid var(--line);border-radius:20px;padding:18px;text-align:left;background:var(--surface);cursor:pointer}
+.mode:hover{border-color:var(--brand);transform:translateY(-2px)}
+.mode .e{font-size:30px}
+.mode b{display:block;margin-top:8px;font-size:15.5px}
+.mode small{color:var(--ink-3);font-size:12.5px}
+.detrow{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.detrow .ava{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--surface-2);flex:none}
+.bars{display:flex;align-items:flex-end;gap:6px;height:150px;margin-top:12px}
+.bars .c{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end}
+.bars .c i{width:100%;max-width:34px;border-radius:7px 7px 3px 3px;background:var(--grad)}
+.bars .c i.cw{background:#C7D2FE}
+.bars small{font-size:10.5px;color:var(--ink-3)}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.plan{border:1.5px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:10px;background:var(--surface);position:relative}
+.plan.rec{border-color:var(--brand);box-shadow:0 12px 30px rgba(99,102,241,.22)}
+.plan .pop{position:absolute;top:-11px;left:18px;background:var(--grad);color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px}
+.plan .pr{font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.plan ul{list-style:none;padding:0;margin:0;font-size:13px;color:var(--ink-2);display:grid;gap:6px}
+.plan li::before{content:"✓";color:var(--good);font-weight:900;margin-right:7px}
+.offer{border:1.5px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:14px;align-items:center}
+.offer.best{border-color:var(--brand);background:var(--brand-soft)}
+.offer .amt{font-size:24px;font-weight:900;letter-spacing:-.02em;white-space:nowrap}
+.lockwrap{position:relative}
+.lockwrap .blur{filter:blur(6px);pointer-events:none;user-select:none;opacity:.7}
+.lockwrap .over{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px}
+.lockwrap .over>div{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);max-width:420px}
+.planchip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:99px;background:var(--grad);color:#fff;letter-spacing:.02em;vertical-align:1px}
+input[type=range]{width:100%;accent-color:var(--brand)}
+.mob-nav{display:none}
+.mob-brand{display:none;align-items:center;gap:8px;font-weight:900;font-size:19px;margin-bottom:14px;letter-spacing:-.03em}
+.mob-brand svg{width:30px;height:30px}
+.disclaimer{font-size:12px;color:var(--ink-3);margin-top:30px;line-height:1.6}
+@media (max-width:980px){.g3{grid-template-columns:1fr 1fr}}
+@media (max-width:820px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{display:none}
+  main{padding:18px 16px 120px}
+  .g2,.g3,.modes,.plans{grid-template-columns:1fr}
+  .grid>*{grid-column:auto !important}
+  .top h1{font-size:25px}
+  .top .actions{margin-left:0;width:100%}
+  .mob-brand{display:flex}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero .row{flex-wrap:wrap}
+  .big{font-size:34px}
+  .mob-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);padding:6px 8px calc(8px + env(safe-area-inset-bottom));z-index:40;justify-content:space-around;align-items:flex-end}
+  .mob-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:var(--ink-3);text-decoration:none;padding:4px 8px;font-weight:700;position:relative}
+  .mob-nav a.active{color:var(--brand)}
+  .mob-nav svg{width:23px;height:23px}
+  .mob-nav .fab{width:60px;height:60px;border-radius:20px;background:var(--grad);color:#fff;display:grid;place-items:center;margin-top:-26px;box-shadow:0 10px 24px rgba(99,102,241,.45);border:none}
+  .mob-nav .fab svg{width:27px;height:27px}
+}
+@media print{.side,.mob-nav,.top .actions,.no-print,.disclaimer{display:none !important}.app{display:block}main{padding:0;max-width:none}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side"></aside>
+  <main id="main"></main>
+</div>
+<nav class="mob-nav" id="mobnav"></nav>
+<div id="modal-root"></div>
+
+<script>
+/* =====================================================================
+   Ownwise v3 — Scan your home. Own it wisely.
+   A verified, living asset register for households, property investors
+   and small businesses. All data stays on this device (localStorage).
+   ===================================================================== */
+
+// ---------- Helpers ----------
+const EMBED = (()=>{ try { return window.self !== window.top; } catch(e){ return true; } })(); // hosted in the Claude viewer
+let SAMPLE = null, SAMPLE_IMG = false, SAMPLE_MAX = 3, DL = null;
+if (EMBED && window.claude && typeof window.claude.use === 'function'){
+  window.claude.use('sample').then(sm => { SAMPLE = sm; return sm ? sm.limits().catch(()=>null) : null; })
+    .then(l => { SAMPLE_IMG = !!(l && l.images); SAMPLE_MAX = Math.min(3, (l && l.images && l.images.maxCount) || 3); try { if (S && S.me) renderNav(); } catch(e){} }).catch(()=>{});
+  window.claude.use('downloads').then(d => { DL = d; }).catch(()=>{});
+}
+const aiLive = () => EMBED ? (!!SAMPLE && SAMPLE_IMG) : !!(S.ai && S.ai.key);
+function dataToBlob(d){ const [h, b] = d.split(','); const bin = atob(b); const u = new Uint8Array(bin.length); for (let i=0;i<bin.length;i++) u[i] = bin.charCodeAt(i); return new Blob([u], {type:(h.match(/data:([^;]+)/)||[])[1] || 'image/jpeg'}); }
+const $ = (s, el=document) => el.querySelector(s);
+const fmt = (n, d=0) => (n<0?'-':'') + '$' + Math.abs(Math.round((n||0)*10**d)/10**d).toLocaleString('en-AU',{minimumFractionDigits:d,maximumFractionDigits:d});
+const uid = () => Math.random().toString(36).slice(2,10);
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = v => { const n = parseFloat(String(v).replace(/[$,\s]/g,'')); return isFinite(n) ? n : 0; };
+const todayISO = () => new Date().toISOString().slice(0,10);
+const DAY = 864e5, YEAR = 365.25*DAY;
+const yearsSince = d => Math.max(0, (Date.now() - new Date(d)) / YEAR);
+const addYears = (d, y) => new Date(new Date(d).getTime() + y*YEAR);
+const dstr = d => new Date(d).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+const yrs = y => y < 1 ? `${Math.max(1,Math.round(y*12))} mo` : `${(Math.round(y*10)/10).toString().replace(/\.0$/,'')} yr${y>=1.05?'s':''}`;
+function toast(msg){ const t=document.createElement('div'); t.className='toast'; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2800); }
+
+// ---------- Icons ----------
+const I = {
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>',
+  scan:'<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.5"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
+  cog:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  trash:'<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>',
+  camera:'<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+  print:'<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+  zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',
+  copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  up:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+  send:'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>',
+  sparkle:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+};
+const icon = (n, extra='') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${extra}>${I[n]}</svg>`;
+let _lg=0;
+const logo = () => { const id='og'+(++_lg); return `<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs><rect x="2" y="2" width="60" height="60" rx="16" fill="url(#${id})"/><path d="M31 12h15a6 6 0 0 1 6 6v15L32.2 52.8a4 4 0 0 1-5.6 0L11.2 37.4a4 4 0 0 1 0-5.6z" fill="#fff"/><circle cx="43" cy="21" r="3.6" fill="#6D4AEA"/><path d="M22 35l5.5 5.5L38 30" fill="none" stroke="#6D4AEA" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="49" r="4.5" fill="#FF6B4A"/></svg>`; };
+
+// ---------- Category intelligence ----------
+// life: years a reasonable consumer would expect it to last (consumer-guarantee horizon, indicative)
+// el: tax effective life in years (indicative — verify against the ATO's current effective life determination)
+// dep: annual resale decline · upw: uses per week · g: tile gradient
+const CATS = {
+  fridge:{n:'Fridge / freezer', e:'🧊', life:10, el:12, dep:.16, upw:7, g:'#DBEAFE,#E0E7FF', kw:/fridge|freezer|refrigerat/i},
+  washer:{n:'Washer / dryer', e:'🫧', life:9, el:10, dep:.17, upw:4, g:'#E0F2FE,#EDE9FE', kw:/washing|washer|dryer|laundry/i},
+  dish:{n:'Dishwasher', e:'🍽️', life:9, el:10, dep:.17, upw:5, g:'#E0F2FE,#F0F9FF', kw:/dishwash/i},
+  cooking:{n:'Oven / cooktop / rangehood', e:'🔥', life:12, el:12, dep:.15, upw:6, g:'#FFEDD5,#FEF3C7', kw:/oven|cooktop|stove|rangehood/i},
+  smallapp:{n:'Small appliance', e:'☕', life:4, el:5, dep:.25, upw:6, g:'#FEF3C7,#FFE4E6', kw:/kettle|toaster|blender|coffee|air ?fryer|microwave|mixer|heater|\bfan\b/i},
+  tv:{n:'TV / audio', e:'📺', life:7, el:10, dep:.22, upw:10, g:'#E0E7FF,#F3E8FF', kw:/\btv\b|television|soundbar|speaker|projector|oled/i},
+  computer:{n:'Computer', e:'💻', life:4, el:2, dep:.28, upw:12, g:'#E2E8F0,#E0E7FF', kw:/laptop|macbook|computer|\bpc\b|desktop|monitor|imac/i},
+  phone:{n:'Phone / tablet', e:'📱', life:3, el:3, dep:.32, upw:50, g:'#F1F5F9,#E0E7FF', kw:/phone|iphone|galaxy|pixel|ipad|tablet/i},
+  wearable:{n:'Watch / headphones', e:'🎧', life:3, el:3, dep:.33, upw:12, g:'#F5F3FF,#FCE7F3', kw:/smart ?watch|apple watch|airpods|headphone|earbud/i},
+  camera:{n:'Camera / gear', e:'📷', life:6, el:3, dep:.2, upw:1, g:'#F1F5F9,#FAE8FF', kw:/camera|lens|drone|gopro|light kit|studio light/i},
+  vacuum:{n:'Vacuum / cleaning', e:'🧹', life:6, el:5, dep:.24, upw:2, g:'#ECFDF5,#E0F2FE', kw:/vacuum|dyson|roomba/i},
+  aircon:{n:'Air conditioning', e:'❄️', life:12, el:10, dep:.12, upw:5, g:'#E0F2FE,#CFFAFE', kw:/air ?con|split system|heat pump/i},
+  hotwater:{n:'Hot water system', e:'🚿', life:12, el:12, dep:.12, upw:7, g:'#FFE4E6,#FEF3C7', kw:/hot water/i},
+  carpet:{n:'Carpet / floor coverings', e:'🟫', life:10, el:8, dep:.3, upw:7, g:'#FEF3C7,#FDE68A', kw:/carpet|rug\b|floor/i},
+  blinds:{n:'Blinds / curtains', e:'🪟', life:10, el:10, dep:.25, upw:7, g:'#F0F9FF,#E0E7FF', kw:/blind|curtain|shutter/i},
+  lighting:{n:'Lighting / fans / alarms', e:'💡', life:8, el:5, dep:.3, upw:7, g:'#FEF9C3,#FEF3C7', kw:/light|lamp|ceiling fan|smoke alarm|alarm/i},
+  sofa:{n:'Furniture', e:'🛋️', life:10, el:10, dep:.18, upw:14, g:'#EDE9FE,#FCE7F3', kw:/sofa|couch|lounge|table|chair|desk|wardrobe|drawers|bookshelf|cabinet|armchair/i},
+  bed:{n:'Bed / mattress', e:'🛏️', life:9, el:10, dep:.25, upw:7, g:'#E0E7FF,#FCE7F3', kw:/mattress|\bbed\b/i},
+  bike:{n:'Bike / scooter', e:'🚲', life:8, el:5, dep:.15, upw:2, g:'#DCFCE7,#E0F2FE', kw:/bike|bicycle|scooter/i},
+  tools:{n:'Tools / garden', e:'🛠️', life:7, el:5, dep:.15, upw:1, g:'#FEF3C7,#E2E8F0', kw:/drill|\bsaw\b|mower|tool|whipper|blower/i},
+  jewellery:{n:'Jewellery / fine watch', e:'💍', life:50, el:0, dep:0, upw:5, g:'#FDF4FF,#FEF3C7', kw:/\bring\b|necklace|bracelet|earring|rolex|jewel/i},
+  art:{n:'Art / collectible', e:'🖼️', life:100, el:0, dep:-.02, upw:0, g:'#FEF3C7,#FCE7F3', kw:/painting|watercolou?r|\bart\b|print\b|sculpture/i},
+  plant:{n:'Decor / plants', e:'🪴', life:5, el:5, dep:.4, upw:0, g:'#DCFCE7,#ECFCCB', kw:/plant|pot\b|vase|decor/i},
+  other:{n:'Other', e:'📦', life:5, el:5, dep:.2, upw:2, g:'#F1F5F9,#E2E8F0', kw:/$^/},
+};
+const ROOMS = ['Living','Kitchen','Bedroom 1','Bedroom 2','Bedroom 3','Office','Bathroom','Laundry','Garage / outdoor','On me','Whole property'];
+const detectCat = name => { for (const [k,c] of Object.entries(CATS)) if (c.kw.test(name)) return k; return 'other'; };
+const appreciates = cat => cat==='art' || cat==='jewellery';
+const STATES = {NSW:'NSW Fair Trading',VIC:'Consumer Affairs Victoria',QLD:'Office of Fair Trading QLD',WA:'Consumer Protection WA',SA:'Consumer and Business Services SA',TAS:'Consumer, Building and Occupational Services TAS',ACT:'Access Canberra',NT:'NT Consumer Affairs'};
+const PLACE_TYPES = {home:{n:'My home', e:'🏡', d:'Insurance, rights & value'}, rental:{n:'Investment property', e:'🏘️', d:'+ tax depreciation register'}, business:{n:'Business', e:'💼', d:'+ business asset register'}};
+
+// Sample recall feed — FICTIONAL demo data, not real recalls
+const RECALLS = [
+  {id:'r1', title:'Brisa FH-2000 2000W fan heater', match:/brisa.*fh-?2000/i, date:'2026-10-02', hazard:'An internal wiring fault can cause the heater to overheat, posing a fire risk.', action:'Stop using it, unplug it, and return it to the place of purchase for a full refund.'},
+  {id:'r2', title:'Kelvo AF-70 air fryer', match:/kelvo.*af-?70/i, date:'2026-08-19', hazard:'The handle can detach while hot.', action:'Contact Kelvo for a free replacement handle.'},
+];
+
+// ---------- State ----------
+const KEY = 'ownwise.v3';
+const blank = () => ({ me:null, places:[], items:[], inbox:[], done:{}, found:[], claims:[], scans:{}, theme:'auto', ai:{key:''}, place:null, plan:{tier:'free'}, usage:{}, rev:[] });
+let S = load();
+function load(){ try { return Object.assign(blank(), JSON.parse(localStorage.getItem(KEY)) || {}); } catch(e){ return blank(); } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast('Storage full — remove some photos or download a backup.'); } }
+function applyTheme(){ const r=document.documentElement; if (S.theme==='auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.theme); }
+const placeOf = it => S.places.find(p=>p.id===it.place) || S.places[0] || {type:'home', name:'My home', id:''};
+
+// ---------- Item intelligence ----------
+const tierAdjust = p => p >= 2000 ? 1.25 : p >= 800 ? 1.1 : (p > 0 && p < 150) ? 0.75 : 1;
+function intel(it){
+  const c = CATS[it.cat] || CATS.other; const age = yearsSince(it.date); const price = num(it.price);
+  const life = c.life * tierAdjust(price);
+  const warrantyEnd = addYears(it.date, num(it.warranty));
+  const rightsEnd = addYears(it.date, life);
+  const base = appreciates(it.cat) ? (num(it.value)||price) : price;
+  const resaleAt = t => base * Math.pow(1 - c.dep, t);
+  const resale = resaleAt(age);
+  const replacement = (num(it.value) || price) * Math.pow(1.03, age);
+  const inWarranty = Date.now() < warrantyEnd;
+  const rightsLeft = (rightsEnd - Date.now())/YEAR;
+  let status, tone;
+  if (appreciates(it.cat)){ status = it.irreplaceable ? 'Irreplaceable' : 'Valuable'; tone='coral'; }
+  else if (it.secondHand && !price){ status='Came with property'; tone=''; }
+  else if (inWarranty){ status = 'Under warranty'; tone='good'; }
+  else if (rightsLeft > life*0.25){ status = 'Rights still strong'; tone='brand'; }
+  else if (rightsLeft > 0){ status = 'Rights weakening'; tone='warn'; }
+  else { status = 'Past expected life'; tone=''; }
+  const estUses = it.uses != null ? it.uses : Math.round(age * 52 * (it.upw ?? c.upw));
+  const costPerUse = estUses > 0 && price > 0 && !appreciates(it.cat) ? Math.max(0, price - resale) / estUses : null;
+  const idleDays = it.lastUsed ? (Date.now() - new Date(it.lastUsed))/DAY : null;
+  const lossNext12 = Math.max(0, resale - resaleAt(age+1));
+  const recall = RECALLS.find(r => r.match.test(`${it.brand||''} ${it.name} ${it.model||''}`));
+  return { c, age, life, warrantyEnd, rightsEnd, rightsLeft, resale, resaleAt, replacement, inWarranty, status, tone, estUses, costPerUse, idleDays, lossNext12, recall };
+}
+
+// ---------- Tax depreciation engine (Div 40 plant & equipment + Div 43 capital works) ----------
+const fyOf = d => { const x = new Date(d); return x.getMonth() >= 6 ? x.getFullYear()+1 : x.getFullYear(); };
+const CUR_FY = fyOf(new Date());
+const fyLabel = Y => `${Y-1}–${String(Y).slice(2)}`;
+function depFor(it, pl, Y){
+  if (!pl || pl.type === 'home') return null;
+  const cost = num(it.price); const y0 = fyOf(it.date);
+  if (appreciates(it.cat)) return {excluded:true, reason:'Not a depreciating asset'};
+  if (pl.type==='rental' && it.secondHand) return {excluded:true, reason:'Second-hand plant in an established residential rental acquired after 9 May 2017 — decline in value not deductible for individual investors (may matter for CGT on sale).'};
+  if (!cost || Y < y0) return {method:'—', opening:0, ded:0, closing:cost, notYet:Y<y0};
+  const el = (CATS[it.cat]||CATS.other).el || 5;
+  const fyEnd = new Date(`${y0}-06-30`); const firstFrac = Math.min(1, Math.max(0, (fyEnd - new Date(it.date))/DAY + 1) / 365);
+  let method, step;
+  if (pl.type === 'business'){
+    if (cost < 20000){ method = 'Instant asset write-off'; step = (open, y) => y===y0 ? open : 0; }
+    else { method = 'Small business pool'; step = (open, y) => open * (y===y0 ? .15 : .30); }
+  } else if (cost <= 300){ method = 'Immediate (≤$300)'; step = (open, y) => y===y0 ? open : 0; }
+  else if (cost <= 1000){ method = 'Low-value pool'; step = (open, y) => open * (y===y0 ? .1875 : .375); }
+  else if (pl.method === 'pc'){ method = `Prime cost · ${el} yrs`; step = (open, y) => Math.min(open, cost/el * (y===y0 ? firstFrac : 1)); }
+  else { method = `Diminishing value · ${el} yrs`; step = (open, y) => open * Math.min(1, 2/el) * (y===y0 ? firstFrac : 1); }
+  let open = cost, out = null;
+  for (let y=y0; y<=Y; y++){ const d = Math.min(open, step(open, y)); if (y===Y) out = {method, el, opening:open, ded:d, closing:open-d}; open -= d; }
+  return out;
+}
+function capWorks(pl, Y){
+  if (pl.type !== 'rental' || !num(pl.buildCost) || !pl.built) return 0;
+  const start = new Date(Math.max(new Date(pl.built), new Date(pl.purchased||pl.built)));
+  const end = addYears(pl.built, 40);
+  const fs = new Date(`${Y-1}-07-01`), fe = new Date(`${Y}-06-30`);
+  const a = Math.max(start, fs), b = Math.min(end, fe);
+  const days = b > a ? (b - a)/DAY + 1 : 0;
+  return num(pl.buildCost) * 0.025 * Math.min(365, days) / 365;
+}
+function schedule(pl, Y=CUR_FY){
+  const items = S.items.filter(i => i.place===pl.id && i.status!=='sold');
+  const rows = items.map(i => ({i, d: depFor(i, pl, Y)})).filter(r => r.d);
+  const plant = rows.filter(r=>!r.d.excluded).reduce((s,r)=>s+r.d.ded,0);
+  const cw = capWorks(pl, Y);
+  return { rows, plant, cw, total: plant + cw, excluded: rows.filter(r=>r.d.excluded) };
+}
+const taxPlaces = () => S.places.filter(p=>p.type!=='home');
+const deductionsThisFY = () => taxPlaces().reduce((s,p)=>s+schedule(p).total,0);
+
+// ---------- Portfolio, cover & score ----------
+function quickEstimate(){
+  const h = S.me?.home || {beds:3, people:2, tier:'average'}; const m = {basic:.7, average:1, premium:1.6}[h.tier] || 1;
+  const beds = num(h.beds), ppl = Math.max(1, num(h.people));
+  return Math.round((15000 + 12000 + 4000 + (beds>0 ? 14000 + (beds-1)*9000 : 6000) + ppl*9500 + 8000) * m / 1000) * 1000;
+}
+function portfolio(){
+  const X = S.items.filter(i => i.status !== 'sold').map(i => ({...i, x: intel(i), p: placeOf(i)}));
+  const homeX = X.filter(i => i.p.type === 'home');
+  const replacement = homeX.reduce((s,i)=>s+i.x.replacement,0);
+  const total = X.reduce((s,i)=>s+i.x.replacement,0);
+  const needed = Math.max(replacement, quickEstimate()); const cover = num(S.me?.cover);
+  const recalls = X.filter(i=>i.x.recall && !S.done['recall-'+i.id]);
+  const idle = X.filter(i=>i.x.idleDays!=null && i.x.idleDays>180 && i.x.resale>80 && !appreciates(i.cat));
+  const protectedVal = X.filter(i=>!i.x.inWarranty && i.x.rightsLeft>0 && num(i.price)>0 && !appreciates(i.cat)).reduce((s,i)=>s+num(i.price),0);
+  const noPhoto = X.filter(i=>!i.photo && !i.verified && i.x.replacement>300);
+  const verified = X.filter(i=>i.verified).length;
+  return { X, homeX, replacement, total, needed, cover, gap: needed-cover, recalls, idle, protectedVal, noPhoto, verified };
+}
+function score(P = portfolio()){
+  const parts = [
+    {k:'Cover', max:25, v: P.needed ? Math.round(25*Math.min(1, P.cover/P.needed)) : 25, tip: P.gap>0 ? `Close your ${fmt(P.gap)} cover gap` : null, go:'#/reports'},
+    {k:'Evidence', max:25, v: P.X.length ? Math.round(25*(1 - P.noPhoto.length/Math.max(1,P.X.filter(i=>i.x.replacement>300).length))) : 0, tip: P.noPhoto.length ? `Add photos to ${P.noPhoto.length} items` : null, go:'#/assets'},
+    {k:'Safety', max:20, v: P.recalls.length ? 0 : 20, tip: P.recalls.length ? 'Deal with your recalled item' : null, go:'#/today'},
+    {k:'Up to date', max:20, v: Math.max(0, 20 - S.inbox.length*5 - (Object.keys(S.scans).length ? 0 : 6)), tip: S.inbox.length ? `Confirm ${S.inbox.length} new purchase${S.inbox.length>1?'s':''}` : !Object.keys(S.scans).length ? 'Scan a room' : null, go:'#/today'},
+    {k:'Records', max:10, v: P.X.length ? Math.round(10*P.X.filter(i=>i.retailer && i.date).length/P.X.length) : 0, tip:null},
+  ];
+  const total = parts.reduce((s,p)=>s+p.v,0);
+  const next = parts.filter(p=>p.tip).sort((a,b)=>(b.max-b.v)-(a.max-a.v))[0];
+  return { total, parts, next, gain: next ? next.max-next.v : 0 };
+}
+
+// ---------- Today feed: reasons to come back ----------
+function moments(){
+  const P = portfolio(); const L = [];
+  P.recalls.forEach(i => L.push({id:'recall-'+i.id, tone:'bad', e:'⚠️', tag:'Safety recall', t:`Your ${i.name} has been recalled`, d:`${i.x.recall.hazard} ${i.x.recall.action}`, act:[['Get refund letter',`recallLetter('${i.id}')`,'coral'],["I've returned it",`resolveRecall('${i.id}')`]]}));
+  if (S.inbox.length && !has('autoimport')) L.push({id:'inbox-locked-'+S.inbox.length, tone:'brand', e:'📨', tag:'Auto-import', t:`${S.inbox.length} new purchase${S.inbox.length>1?'s':''} found in your email & bank`, d:`Including ${esc(S.inbox[0].merchant)} — ${esc(S.inbox[0].name)} (${fmt(S.inbox[0].price)}). Turn on auto-import and your register keeps itself up to date.`, act:[[`Turn on auto-import`,`paywall('autoimport')`,'grad']]});
+  if (has('autoimport')) S.inbox.forEach(b => { const pl = S.places.find(p=>p.id===b.place); L.push({id:'inbox-'+b.id, tone:'brand', e:'📨', tag:`New purchase · from your ${b.source}`, t:`${b.merchant}: ${b.name} — ${fmt(b.price)}`, d:`Found ${dstr(b.date)}. ${pl && pl.type!=='home' ? `Looks like it's for <b>${esc(pl.name)}</b> — it'll be added to your depreciation register.` : 'Add it and Ownwise starts tracking its warranty, rights and value.'}`, act:[['Add to register',`acceptInbox('${b.id}')`,'primary'],['Not an asset',`rejectInbox('${b.id}')`]]}); });
+  taxPlaces().forEach(p => { const s = schedule(p); if (s.total>0) L.push({id:`dep-${p.id}-${CUR_FY}`, tone:'good', e:'🧾', tag:`Tax · FY ${fyLabel(CUR_FY)}`, t:`${fmt(s.total)} of depreciation identified for ${p.name}`, d:`${fmt(s.plant)} plant & equipment${s.cw?` + ${fmt(s.cw)} capital works`:''}. Accountant-ready and updated every time you add an asset.`, act: has('dep') ? [['View register',`nav('#/reports?p=${p.id}')`,'primary'],['Send to accountant',`shareAccountant('${p.id}')`]] : [['Unlock register — 14 days free',`paywall('dep')`,'grad'],['Preview',`nav('#/reports?p=${p.id}')`]]}); });
+  P.X.filter(i=>!appreciates(i.cat) && num(i.price)>0).forEach(i => {
+    const wd = (i.x.warrantyEnd - Date.now())/DAY;
+    if (wd > 0 && wd < 75) L.push({id:'warr-'+i.id, tone:'warn', e:'⏳', tag:'Warranty ending', t:`${i.name}: warranty ends in ${Math.ceil(wd)} days`, d:'Give it a once-over now — anything odd is easier to fix under warranty. Your consumer-law rights keep going after this.', act:[['Something\'s wrong',`brokeModal('${i.id}')`,'primary'],['All good',`done('warr-${i.id}')`]]});
+  });
+  if (P.gap > 0 && P.cover) L.push({id:'cover-'+Math.round(P.gap/1000), tone:'coral', e:'☂️', tag:'Insurance', t:`You may be ${fmt(P.gap)} underinsured`, d:`Your home contents are worth about ${fmt(P.needed)} to replace; your cover is ${fmt(P.cover)}. Worth raising at your next renewal.`, act:[['Compare quotes',`insuranceModal()`,'primary'],['See breakdown',`nav('#/reports')`],['Later',`done('cover-${Math.round(P.gap/1000)}')`]]});
+  P.idle.slice(0,1).forEach(i => L.push({id:'idle-'+i.id+'-'+new Date().getMonth(), tone:'brand', e:'💸', tag:'Sell window', t:`Your ${i.name} hasn't been used in ${Math.round(i.x.idleDays/30)} months`, d:`It's worth about ${fmt(i.x.resale)} today and will lose ~${fmt(i.x.lossNext12)} over the next year.`, act:[[`Get ${fmt(offersFor(i).payout)} on Ownwise Market`,`sellModal('${i.id}')`,'primary'],[`Instant offer ${fmt(offersFor(i).instant)}`,`sellModal('${i.id}')`],['Keep it',`done('idle-${i.id}-${new Date().getMonth()}')`]]}));
+  P.X.filter(i=>i.x.rightsLeft<=0&&num(i.price)>0&&!appreciates(i.cat)&&i.p.type==='home').slice(0,1).forEach(i => L.push({id:'replace-'+i.id+'-'+new Date().getMonth(), tone:'warn', e:'🔁', tag:'Plan ahead', t:`Your ${i.name} is past its expected life`, d:`It's ${yrs(i.x.age)} old — most last about ${yrs(i.x.life)}. Replace it on your terms (and trade the old one in) rather than when it dies.`, act:[['See options',`replaceModal('${i.id}')`,'primary'],['Not yet',`done('replace-${i.id}-${new Date().getMonth()}')`]]}));
+  const unscanned = ['Living','Kitchen','Bedroom 1','Office'].filter(r=>!S.scans[r]);
+  if (unscanned.length) L.push({id:'scan-'+unscanned.join(), tone:'brand', e:'📸', tag:'60-second task', t:`Scan your ${unscanned[0].toLowerCase()}`, d:`Point your camera around the room and Ownwise lists everything in it — with values. ${unscanned.length-1 ? `${unscanned.length-1} more rooms to go.` : 'Last room!'}`, act:[['Scan now',`openScanner('room')`,'grad']]});
+  if (P.noPhoto.length) L.push({id:'photos-'+P.noPhoto.length, tone:'', e:'🖼️', tag:'Claim-ready', t:`${P.noPhoto.length} items have no photo evidence`, d:'Insurers ask for proof of ownership and condition. A verified photo takes 5 seconds and lifts your score.', act:[['Snap them',`openScanner('item')`,'primary']]});
+  return L.filter(m => !S.done[m.id]);
+}
+
+// ---------- Demo data ----------
+function demo(){
+  const home = {id:'home', type:'home', name:'My home', sub:'Brunswick VIC'};
+  const rental = {id:'banksia', type:'rental', name:'12 Banksia St', sub:'Investment unit · Footscray VIC', purchased:'2019-08-15', built:'2008-03-01', buildCost:240000, method:'dv', established:true};
+  const biz = {id:'studio', type:'business', name:'Kobi Studio', sub:'Sole trader · photography'};
+  const I = (place, name, brand, model, cat, room, price, date, retailer, warranty, extra={}) => ({id:uid(), place, name, brand, model, cat, room, price, date, retailer, warranty, ...extra});
+  const v = d => ({at:d, hash:'demo'});
+  const items = [
+    I('home','French door fridge 640L','Samsung','SRF7500','fridge','Kitchen',2199,'2021-03-12','The Good Guys',2,{verified:v('2026-09-02')}),
+    I('home','Front loader washer 8kg','LG','WV5-1408','washer','Laundry',899,'2019-06-02','Harvey Norman',2),
+    I('home','65" OLED TV','Sony','Bravia XR','tv','Living',2495,'2022-11-25','JB Hi-Fi',1,{verified:v('2026-09-02')}),
+    I('home','MacBook Air 13"','Apple','M2','computer','Office',1799,'2023-08-14','Apple Store',1),
+    I('home','iPhone 15','Apple','A3090','phone','On me',1499,'2023-10-02','Telstra',1,{verified:v('2026-09-02')}),
+    I('home','Cordless stick vacuum','Dyson','V12','vacuum','Laundry',899,'2021-09-08','Myer',2),
+    I('home','Espresso machine','Breville','Barista Express','smallapp','Kitchen',749,'2020-05-17','David Jones',1),
+    I('home','3-seat sofa','Koala','Cushy','sofa','Living',2100,'2022-02-10','Koala',1,{verified:v('2026-09-02')}),
+    I('home','Queen mattress','Sleeptite','Ortho Plus','bed','Bedroom 1',1500,'2020-01-28','Forty Winks',10),
+    I('home','Road bike','Giant','TCR Advanced','bike','Garage / outdoor',1899,'2021-12-04','99 Bikes',1,{lastUsed:'2025-12-14'}),
+    I('home','Fan heater 2000W','Brisa','FH-2000','smallapp','Bedroom 2',79,'2024-05-21','Big W',1),
+    I('home','Games console','Nintendo','Switch OLED','other','Living',469,'2021-11-26','EB Games',1,{lastUsed:'2025-08-01'}),
+    I('home','Engagement ring','Custom','Platinum solitaire','jewellery','On me',6500,'2022-06-18','Larsen Jewellery',0,{value:7200, irreplaceable:true, verified:v('2026-09-02')}),
+    I('home',"Grandma's watercolour",'Original','Coastal scene','art','Living',0,'2015-01-01','Inherited',0,{value:3000, irreplaceable:true}),
+    // Investment property
+    I('banksia','Carpet — 2 bedrooms','Godfrey Hirst','Wool blend','carpet','Whole property',4800,'2023-02-20','Carpet Court',5,{verified:v('2026-08-10')}),
+    I('banksia','Split system air conditioner 5kW','Daikin','FTXM50','aircon','Living',2400,'2022-11-05','Harvey Norman',5,{verified:v('2026-08-10')}),
+    I('banksia','Roller blinds (6)','Luxaflex','Blockout','blinds','Whole property',2100,'2021-04-14','Luxaflex',3),
+    I('banksia','Electric hot water system','Rheem','Stellar 315L','hotwater','Laundry',1650,'2024-07-22','Plumber — AquaFix',5),
+    I('banksia','Dishwasher','Bosch','Series 4','dish','Kitchen',899,'2023-09-03','Appliances Online',2),
+    I('banksia','Ceiling fans (2)','Mercator','Ikuu','lighting','Bedroom 1',760,'2021-04-30','Beacon Lighting',2),
+    I('banksia','Smoke alarms (3)','Clipsal','755 series','lighting','Whole property',270,'2025-03-01','Bunnings',10),
+    I('banksia','Oven (came with unit)','Westinghouse','WVE615','cooking','Kitchen',1200,'2019-08-15','Included in purchase',0,{secondHand:true}),
+    I('banksia','Rangehood (came with unit)','Westinghouse','WRR614','cooking','Kitchen',450,'2019-08-15','Included in purchase',0,{secondHand:true}),
+    // Business
+    I('studio','MacBook Pro 16"','Apple','M4 Max','computer','Office',5999,'2026-08-01','Apple Store',1,{verified:v('2026-08-01')}),
+    I('studio','Mirrorless camera kit','Canon','EOS R5','camera','Office',6400,'2025-02-18','Camera House',1,{verified:v('2026-08-01')}),
+    I('studio','Studio light kit','Godox','AD600 Pro','camera','Office',2400,'2026-09-12','Camera House',1),
+    I('studio','Height-adjustable desk','Desky','Dual','sofa','Office',1100,'2025-03-10','Desky',5),
+  ];
+  const inbox = [
+    {id:uid(), source:'email', merchant:'JB Hi-Fi', name:'Noise-cancelling headphones', brand:'Sony', model:'WH-1000XM5', cat:'wearable', price:549, date:'2026-11-06', place:'home', room:'On me', warranty:1},
+    {id:uid(), source:'bank feed', merchant:'Harvey Norman', name:'Clothes dryer 8kg', brand:'Fisher & Paykel', model:'DE8060P', cat:'washer', price:1049, date:'2026-11-03', place:'banksia', room:'Laundry', warranty:2},
+  ];
+  return { places:[home, rental, biz], items, inbox, scans:{Living:'2026-09-02'} };
+}
+
+// ---------- Plans, paywall & revenue engine ----------
+const PLANS = {
+  free:{n:'Free', m:0, y:0, tag:'Get started', places:1, scans:3, f:['1 place · up to 40 items','3 AI scans a month','Rights, recalls & value tracking','Sell & replace offers']},
+  plus:{n:'Plus', m:6.99, y:59, tag:'For households', places:1, scans:Infinity, f:['Unlimited items & AI scans','Auto-import from email & bank','One-tap insurance claim pack','Verified History on everything you sell','Household sharing']},
+  investor:{n:'Investor', m:12.99, y:119, tag:'For property & business owners', places:4, scans:Infinity, f:['Everything in Plus','Depreciation registers — up to 3 properties or businesses','Send to accountant · CSV workpapers','10-year deduction forecast','Extra places $29/yr']},
+};
+const FEATURE_PLAN = {dep:'investor', places:'investor', autoimport:'plus', claimpack:'plus', scan:'plus'};
+const RANK = {free:0, plus:1, investor:2};
+const tier = () => (S.plan && S.plan.tier) || 'free';
+const has = f => RANK[tier()] >= RANK[FEATURE_PLAN[f] || 'free'];
+const lock = f => has(f) ? '' : ` <span class="planchip">${PLANS[FEATURE_PLAN[f]].n.toUpperCase()}</span>`;
+const monthKey = () => todayISO().slice(0,7);
+const scansLeft = () => { const lim = PLANS[tier()].scans; return lim === Infinity ? Infinity : Math.max(0, lim - ((S.usage||{})[monthKey()]||0)); };
+function useScan(){ S.usage = S.usage || {}; S.usage[monthKey()] = (S.usage[monthKey()]||0) + 1; save(); }
+// Revenue Ownwise earns (demo assumptions — validate with partners)
+const RATES = {resaleFee:.06, resaleMin:5, tradeIn:.05, tradeInMin:10, replace:.03, repair:20, insurance:80, qs:120};
+const STREAMS = {sub:'Subscriptions', resale:'Ownwise Market fees', tradein:'Trade-in referrals', replace:'Replacement commissions', repair:'Repair bookings', insurance:'Insurance referrals', qs:'QS report referrals'};
+function earn(stream, label, amount){ S.rev = S.rev || []; S.rev.push({stream, label, amount:Math.round(amount*100)/100, date:todayISO()}); save(); }
+const WHY = {
+  dep: () => ({t:`Unlock your ${fmt(deductionsThisFY())} depreciation register`, d:'See every asset\'s method, opening and closing value, send an accountant-ready workpaper and get a 10-year forecast. A one-off quantity surveyor report usually costs several hundred dollars — and is out of date the moment you buy something.'}),
+  places: () => ({t:'Track more than one place', d:'Add an investment property or business alongside your home — each with its own depreciation register.'}),
+  autoimport: () => ({t:`${S.inbox.length} new purchase${S.inbox.length===1?'':'s'} waiting`, d:'Ownwise found them in your email receipts and bank feed. Turn on auto-import and your register keeps itself up to date — one tap to confirm.'}),
+  claimpack: () => ({t:'Be claim-ready in one tap', d:'A complete inventory with photos, receipts and replacement values — exactly what insurers ask for after a loss.'}),
+  scan: () => ({t:`You've used your ${PLANS.free.scans} free scans this month`, d:'Upgrade for unlimited AI room, item and receipt scans.'}),
+};
+function paywall(reason){
+  const rec = (reason==='dep' || reason==='places' || taxPlaces().length) ? 'investor' : 'plus';
+  const w = reason && WHY[reason] ? WHY[reason]() : {t:'Choose your plan', d:'Every plan starts with a 14-day free trial. Cancel any time.'};
+  const yearly = S._bill !== 'm';
+  modal(`<div class="row between" style="align-items:flex-start"><div><h2>${w.t}</h2><p class="muted" style="max-width:520px">${w.d}</p></div><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div>
+  <div class="seg" style="margin-top:6px"><button class="${yearly?'':'on'}" onclick="S._bill='m';paywall('${reason||''}')">Monthly</button><button class="${yearly?'on':''}" onclick="S._bill='y';paywall('${reason||''}')">Yearly · save 30%</button></div>
+  <div class="plans">${Object.entries(PLANS).map(([k,p])=>`<div class="plan ${k===rec?'rec':''}">${k===rec?'<span class="pop">Recommended for you</span>':''}
+    <div><b style="font-size:17px">${p.n}</b><div class="muted" style="font-size:12.5px">${p.tag}</div></div>
+    <div><span class="pr">${p.m? (yearly?fmt(p.y):'$'+p.m.toFixed(2)) : '$0'}</span> <span class="muted">${p.m?(yearly?'/ year':'/ month'):''}</span>${p.m&&yearly?`<div class="muted" style="font-size:12px">≈ $${(p.y/12).toFixed(2)} a month</div>`:''}</div>
+    <ul>${p.f.map(f=>`<li>${f}</li>`).join('')}</ul>
+    <div style="margin-top:auto">${tier()===k?`<button class="btn" style="width:100%" disabled>Current plan</button>`:k==='free'?`<button class="btn" style="width:100%" onclick="setPlan('free')">Stay on Free</button>`:`<button class="btn ${k===rec?'grad':'primary'}" style="width:100%" onclick="checkout('${k}',${yearly})">Start 14-day free trial</button>`}</div></div>`).join('')}</div>
+  <p class="muted" style="font-size:12px;margin-top:14px;text-align:center">Ownwise is tax-deductible for investors as a cost of managing tax affairs where it relates to your rental. · Prices AUD incl. GST.</p>`);
+}
+function checkout(k, yearly){
+  const p = PLANS[k]; const price = yearly ? p.y : p.m;
+  modal(`<h2>Start your free trial</h2><p class="muted">Ownwise ${p.n} · ${yearly?fmt(p.y)+' / year':'$'+p.m.toFixed(2)+' / month'} after 14 days. Cancel any time before then and you won't be charged.</p>
+  <div class="stack" style="margin-top:16px">
+    <button class="btn" style="width:100%;padding:14px;background:#000;color:#fff;border-color:#000" onclick="confirmPlan('${k}',${yearly})"> Pay</button>
+    <button class="btn" style="width:100%;padding:14px" onclick="confirmPlan('${k}',${yearly})">💳 Card ending 4242</button></div>
+  <div class="row between" style="margin-top:16px"><span class="muted">Due today</span><b>$0.00</b></div><div class="row between"><span class="muted">From ${dstr(Date.now()+14*DAY)}</span><b>${yearly?fmt(price,2):'$'+price.toFixed(2)}</b></div>
+  <p class="muted" style="font-size:12px;margin-top:12px">Prototype checkout — no payment is taken. Production uses Stripe / in-app purchase.</p>`);
+}
+function confirmPlan(k, yearly){ const p=PLANS[k]; S.plan = {tier:k, trial:true, since:todayISO(), billing:yearly?'y':'m'}; earn('sub', `${p.n} subscription (${yearly?'annual':'monthly × 12'})`, yearly ? p.y : p.m*12); save(); closeModal(); render(); toast(`🎉 Ownwise ${p.n} unlocked — 14 days free`); }
+function setPlan(k){ S.plan = {tier:k}; save(); closeModal(); render(); }
+
+// ---------- Money moments: sell, replace, repair, insure ----------
+function offersFor(it){ const x = intel(it); const r = Math.max(0, x.resale);
+  const instant = Math.max(0, Math.round(r*0.68/5)*5), list = Math.max(5, Math.round(r*1.08/5)*5), fee = Math.max(RATES.resaleMin, list*RATES.resaleFee);
+  return {x, instant, list, fee, payout: list - fee}; }
+function sellModal(id){
+  const it = S.items.find(i=>i.id===id); const o = offersFor(it);
+  if (it.listed) return modal(`<h2>${esc(it.name)} is listed</h2><p class="muted">On Ownwise Market at ${fmt(it.listed.price)} since ${dstr(it.listed.date)}, with its Verified History attached.</p><div class="row wrap" style="margin-top:14px"><button class="btn grad" onclick="soldListed('${id}')">${icon('check')} It sold</button><button class="btn" onclick="delete S.items.find(i=>i.id==='${id}').listed;save();closeModal();render()">Unlist</button></div>`);
+  modal(`<div class="row between"><div><h2>Sell your ${esc(it.name)}</h2><p class="muted">Worth about ${fmt(o.x.resale)} today · waiting a year costs ~${fmt(o.x.lossNext12)}</p></div><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div>
+  <div class="stack" style="margin-top:14px">
+    <div class="offer"><div style="font-size:28px">⚡</div><div style="flex:1"><b>Instant offer</b><div class="muted">From our trade-in partner. Free pickup, paid within 48 hours.</div></div><div style="text-align:right"><div class="amt">${fmt(o.instant)}</div><button class="btn sm primary" onclick="acceptInstant('${id}',${o.instant})">Accept</button></div></div>
+    <div class="offer best"><div style="font-size:28px">🛡️</div><div style="flex:1"><b>Sell on Ownwise Market <span class="chip brand">Best price</span></b><div class="muted">Listed with its <b>Verified History</b> — purchase date, receipt, photos and condition — so buyers trust it and pay more. ${Math.round(RATES.resaleFee*100)}% fee only when it sells.</div></div><div style="text-align:right"><div class="amt">${fmt(o.payout)}</div><div class="muted" style="font-size:12px">you receive · listed at ${fmt(o.list)}</div><button class="btn sm grad" style="margin-top:4px" onclick="listMarket('${id}',${o.list})">List it</button></div></div>
+    <div class="offer"><div style="font-size:28px">✍️</div><div style="flex:1"><b>Sell it yourself</b><div class="muted">We'll write the listing for any marketplace. Free.</div></div><button class="btn sm" onclick="listingModal('${id}')">Write listing</button></div>
+  </div><p class="muted" style="font-size:12px;margin-top:12px">Offers are illustrative in this prototype.</p>`);
+}
+function acceptInstant(id, amt){ const it=S.items.find(i=>i.id===id); it.status='sold'; S.found.push({label:`Sold ${it.name} (instant offer)`, amount:amt, date:todayISO()}); earn('tradein', `Trade-in referral — ${it.name}`, Math.max(RATES.tradeInMin, amt*RATES.tradeIn)); closeModal(); render(); toast(`Offer accepted — ${fmt(amt)} on its way 🎉`); }
+function listMarket(id, price){ const it=S.items.find(i=>i.id===id); it.listed={price, date:todayISO()}; save(); closeModal(); render(); toast('Listed on Ownwise Market with Verified History ✓'); }
+function soldListed(id){ const it=S.items.find(i=>i.id===id); const fee=Math.max(RATES.resaleMin, it.listed.price*RATES.resaleFee); it.status='sold'; S.found.push({label:`Sold ${it.name} on Ownwise Market`, amount:it.listed.price-fee, date:todayISO()}); earn('resale', `Market fee — ${it.name}`, fee); closeModal(); render(); toast(`Sold 🎉 ${fmt(it.listed.price-fee)} paid to you`); }
+function replaceModal(id){
+  const it=S.items.find(i=>i.id===id); const x=intel(it); const base=Math.max(50, x.replacement); const o=offersFor(it); const c=(CATS[it.cat]||CATS.other);
+  const opts=[['Like-for-like','Current version of what you have',base],['Top-rated upgrade','Highest real-world durability in its class',base*1.25],['Budget pick','Does the job for less',base*0.7]];
+  modal(`<div class="row between"><div><h2>Replace your ${esc(it.name)}</h2><p class="muted">${x.rightsLeft<=0?`It's past the ~${yrs(x.life)} a ${c.n.toLowerCase()} usually lasts — replace it on your terms, not when it dies.`:'Options matched to what you own now.'}</p></div><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div>
+  <div class="stack" style="margin-top:14px">${opts.map(([t,d,pr],n)=>`<div class="offer ${n===1?'best':''}"><div style="font-size:28px">${c.e}</div><div style="flex:1"><b>${t}</b>${n===1?' <span class="chip brand">Lasts longest</span>':''}<div class="muted">${d} · Ownwise member price −5%</div></div><div style="text-align:right"><div class="amt">${fmt(pr*0.95)}</div><div class="muted" style="font-size:12px;text-decoration:line-through">${fmt(pr)}</div><button class="btn sm ${n===1?'grad':'primary'}" style="margin-top:4px" onclick="earn('replace','Replacement commission — ${esc(it.name.replace(/[^\w .-]/g,''))}',${(pr*0.95*RATES.replace).toFixed(2)});closeModal();toast('Opening partner store… (demo)')">View deal</button></div></div>`).join('')}</div>
+  ${o.instant>20?`<div class="callout good" style="margin-top:12px">♻️ Trade in your old one for <b>${fmt(o.instant)}</b> when the new one is delivered. <a href="javascript:sellModal('${id}')">See offer</a></div>`:''}
+  <p class="muted" style="font-size:12px;margin-top:12px">Ownwise may earn a commission from partner retailers. It never affects your rights or the price you see. Offers are illustrative in this prototype.</p>`);
+}
+function bookRepair(id){ const it=S.items.find(i=>i.id===id); earn('repair', `Repair booking — ${it.name}`, RATES.repair); closeModal(); toast('Repair requested — a partner repairer will confirm a time (demo)'); }
+function insuranceModal(){
+  const P = portfolio(); const spec = P.homeX.filter(i=>i.x.replacement>2500);
+  modal(`<div class="row between"><div><h2>Get accurate contents quotes</h2><p class="muted">Your verified inventory goes with the request, so quotes reflect what you actually own — no guessing.</p></div><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div>
+  <div class="grid g3" style="margin:14px 0;gap:10px"><div class="kpi"><div class="label">Cover needed</div><div class="val">${fmt(P.needed)}</div></div><div class="kpi"><div class="label">Your current cover</div><div class="val ${P.gap>0?'bad':''}">${fmt(P.cover)}</div></div><div class="kpi"><div class="label">Items to specify</div><div class="val">${spec.length}</div></div></div>
+  ${spec.length?`<div class="muted" style="font-size:13px">Specified items: ${spec.map(i=>`${esc(i.name)} (${fmt(i.x.replacement)})`).join(' · ')}</div>`:''}
+  <div class="callout" style="margin-top:12px;font-size:12.5px">Quotes come from our licensed insurance partner. Ownwise receives a referral fee from the partner; we don't recommend any particular product. Read the PDS and TMD before buying.</div>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="closeModal()">Not now</button><button class="btn grad" style="margin-left:auto" onclick="earn('insurance','Contents insurance referral',RATES.insurance);closeModal();toast('Request sent — quotes arrive by email (demo)')">${icon('send')} Get my quotes</button></div>`);
+}
+function qsModal(pid){
+  const pl = S.places.find(p=>p.id===pid);
+  modal(`<h2>Get your building's capital works value</h2><p class="muted">Capital works (Div 43) needs a construction cost. If you don't have the builder's contract, a registered quantity surveyor can estimate it — usually unlocking thousands in deductions a year.</p>
+  <div class="offer best" style="margin-top:14px"><div style="font-size:28px">📐</div><div style="flex:1"><b>Partner QS estimate for ${esc(pl.name)}</b><div class="muted">Prepared by a registered tax agent QS firm · Ownwise members save 15%</div></div><div class="amt">from $425</div></div>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="closeModal()">Not now</button><button class="btn grad" style="margin-left:auto" onclick="earn('qs','QS report referral — ${esc(pl.name.replace(/[^\w .-]/g,''))}',RATES.qs);closeModal();toast('Request sent to our QS partner (demo)')">Request estimate</button></div>
+  <p class="muted" style="font-size:12px;margin-top:10px">Ownwise receives a referral fee from the QS partner. Illustrative in this prototype.</p>`);
+}
+
+// ---------- Founder view: the business model, live ----------
+function householdValue(){
+  const P = portfolio(); const rec = taxPlaces().length ? 'investor' : 'plus';
+  const rows = [
+    ['sub', `${PLANS[rec].n} subscription`, PLANS[rec].y],
+    ['resale', `Market fees on ${P.idle.length} idle item${P.idle.length===1?'':'s'}`, P.idle.reduce((s,i)=>s+offersFor(i).fee,0)],
+    ['replace', `Replacement commissions (${(n=>n+' item'+(n===1?'':'s'))(P.X.filter(i=>i.x.rightsLeft<=0&&num(i.price)>0&&!appreciates(i.cat)).length)} past expected life)`, P.X.filter(i=>i.x.rightsLeft<=0&&num(i.price)>0&&!appreciates(i.cat)).reduce((s,i)=>s+i.x.replacement*0.95*RATES.replace,0)],
+    ['insurance', 'Contents insurance referral (cover gap)', P.gap>0 ? RATES.insurance : 0],
+    ['repair', 'Repair booking (≈1 a year)', RATES.repair],
+    ['qs', 'QS referrals (properties missing a construction cost)', taxPlaces().filter(p=>p.type==='rental'&&!num(p.buildCost)).length*RATES.qs],
+  ];
+  return {rows, total: rows.reduce((s,r)=>s+r[2],0)};
+}
+VIEWS_EXTRA = {
+model(){
+  const hv = householdValue(); const earned = (S.rev||[]).reduce((s,r)=>s+r.amount,0);
+  const m = S._sim || (S._sim = {users:100000, conv:7, inv:35, realise:15});
+  const subs = m.users*m.conv/100*((m.inv/100)*PLANS.investor.y + (1-m.inv/100)*PLANS.plus.y);
+  const commerceRows = hv.rows.filter(r=>r[0]!=='sub'); const commercePerHH = commerceRows.reduce((s,r)=>s+r[2],0);
+  const commerce = m.users * commercePerHH * m.realise/100;
+  const b2b = m.users * 1.5; const arr = subs + commerce + b2b;
+  const bars = [['Subscriptions',subs],['Commerce & referrals',commerce],['B2B (Recall Reach, insurer API)',b2b]]; const mx=Math.max(1,...bars.map(b=>b[1]));
+  return page('Business model', 'Founder view — how Ownwise makes money inside the app, using this household\'s real data.', `<button class="btn" onclick="nav('#/account')">Back</button>`,
+  `<div class="grid g3">
+    <div class="card hero"><div class="muted" style="font-weight:700">This household is worth</div><div class="big">${fmt(hv.total)}<span style="font-size:18px">/yr</span></div><div class="muted">to Ownwise, from opportunities already in its register</div></div>
+    <div class="card"><div class="muted" style="font-weight:700">Earned in this demo session</div><div class="big">${fmt(earned,2)}</div><div class="muted">${(S.rev||[]).length} revenue events · try selling, replacing or upgrading</div></div>
+    <div class="card"><div class="muted" style="font-weight:700">Projected ARR</div><div class="big good">${fmt(arr/1e6,1).replace('$','$')}M</div><div class="muted">at ${m.users.toLocaleString()} active households</div></div></div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>Where this household's value comes from</h3><table style="margin-top:8px"><tbody>${hv.rows.map(r=>`<tr><td>${esc(r[1])}<div class="muted" style="font-size:12px">${STREAMS[r[0]]}</div></td><td class="num"><b>${fmt(r[2])}</b></td></tr>`).join('')}<tr><td><b>Total per year</b></td><td class="num"><b class="good">${fmt(hv.total)}</b></td></tr></tbody></table></div>
+    <div class="card stack"><h3>Revenue simulator</h3>
+      ${[['users','Active households',10000,1000000,10000,v=>Number(v).toLocaleString()],['conv','Paid conversion',1,20,1,v=>v+'%'],['inv','Paid users on Investor',0,100,5,v=>v+'%'],['realise','Commerce opportunities realised',5,80,5,v=>v+'%']].map(([k,l,a,b,st,f])=>`<div><div class="row between"><label class="f" style="margin:0">${l}</label><b>${f(m[k])}</b></div><input type="range" min="${a}" max="${b}" step="${st}" value="${m[k]}" onchange="S._sim.${k}=+this.value;render()"></div>`).join('')}
+      ${bars.map(([l,v])=>`<div><div class="row between" style="font-size:13px"><span>${l}</span><b>${fmt(v)}</b></div><div style="height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden"><i style="display:block;height:100%;width:${v/mx*100}%;background:var(--grad)"></i></div></div>`).join('')}
+      <div class="row between" style="border-top:1px solid var(--line);padding-top:10px"><b>Annual recurring revenue</b><b class="good" style="font-size:20px">${fmt(arr)}</b></div>
+      <p class="muted" style="font-size:12px;margin:0">ARPU ${fmt(arr/m.users,2)}/household/yr. Fee rates: market ${RATES.resaleFee*100}%, trade-in ${RATES.tradeIn*100}%, retail ${RATES.replace*100}%, insurance ${fmt(RATES.insurance)}, QS ${fmt(RATES.qs)}, repair ${fmt(RATES.repair)}, B2B $1.50/household. Illustrative — validate with partners.</p></div></div>
+  ${(S.rev||[]).length?`<div class="card" style="margin-top:16px"><h3>Revenue events this session</h3><div class="tablewrap"><table><thead><tr><th>Date</th><th>Stream</th><th>Event</th><th class="num">Ownwise earns</th></tr></thead><tbody>${S.rev.slice().reverse().map(r=>`<tr><td>${dstr(r.date)}</td><td>${STREAMS[r.stream]}</td><td>${esc(r.label)}</td><td class="num"><b>${fmt(r.amount,2)}</b></td></tr>`).join('')}</tbody></table></div></div>`:''}`);
+},
+};
+
+// ---------- Router & layout ----------
+const ROUTES = [['today','Today','sun'],['assets','Assets','box'],['reports','Reports','file'],['account','Settings','cog']];
+const route = () => (location.hash.replace(/^#\/?/,'') || 'today').split('?')[0];
+function nav(h){ const [r,q] = String(h).replace(/^#\/?/,'').split('?'); S._qs = q || ''; const cur = route(); location.hash = '#'+r; if (cur === r) render(); }
+const qp = k => new URLSearchParams(S._qs||'').get(k);
+function renderNav(){
+  const r = route(); const n = S.me ? moments().length : 0;
+  $('#side').innerHTML = `<div class="brand">${logo()}<span>Ownwise</span></div>
+  <nav class="nav">${ROUTES.map(([id,t,ic])=>`<a href="#${id}" class="${r===id?'active':''}">${icon(ic)}<span>${t}</span>${id==='today'&&n?`<span class="badge">${n}</span>`:''}</a>`).join('')}</nav>
+  <button class="scanbtn" onclick="openScanner()">${icon('scan')} Scan</button>
+  <div class="side-foot">${icon('shield','style="width:14px;height:14px;vertical-align:-2px"')} Private by default — your register lives on this device.<br><span style="opacity:.8">${aiLive()?'✨ AI vision connected':'AI vision: demo mode'}</span><div style="margin-top:8px">${tier()==='free'?`<button class="btn sm grad" style="width:100%" onclick="paywall()">${icon('sparkle')} Upgrade</button>`:`<span class="planchip">${PLANS[tier()].n.toUpperCase()}</span>${S.plan.trial?' <span style="opacity:.8">trial · 14 days</span>':''}`}</div></div>`;
+  $('#mobnav').innerHTML = `<a href="#today" class="${r==='today'?'active':''}">${icon('sun')}Today</a><a href="#assets" class="${r==='assets'?'active':''}">${icon('box')}Assets</a><button class="fab" onclick="openScanner()" aria-label="Scan">${icon('scan')}</button><a href="#reports" class="${r==='reports'?'active':''}">${icon('file')}Reports</a><a href="#account" class="${r==='account'?'active':''}">${icon('cog')}More</a>`;
+}
+function page(title, sub, actions, body){
+  return `<div class="mob-brand">${logo()} Ownwise</div><div class="top"><div><h1>${title}</h1>${sub?`<div class="sub">${sub}</div>`:''}</div><div class="actions">${actions||''}</div></div>${body}
+  <p class="disclaimer">General information only — not legal, financial, tax or insurance advice. Depreciation figures are a self-prepared register based on the information you enter and indicative ATO effective lives; your registered tax agent should confirm them before lodging. Values and durability are estimates. Recall data shown is fictional demo data.</p>`;
+}
+function render(){
+  applyTheme(); renderNav();
+  if (!S.me){ $('#main').innerHTML=''; onboarding(); return; }
+  if (!S.place || !S.places.find(p=>p.id===S.place)) S.place = S.places[0]?.id;
+  const V = VIEWS[route()] || (VIEWS_EXTRA||{})[route()] || VIEWS.today; $('#main').innerHTML = V(); window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', render);
+
+// ---------- Components ----------
+function ring(v, size=132, color='#fff', track='rgba(255,255,255,.22)'){
+  const r = 54, c = 2*Math.PI*r;
+  return `<div class="ring" style="width:${size}px;height:${size}px"><svg viewBox="0 0 120 120" width="${size}" height="${size}"><circle cx="60" cy="60" r="${r}" fill="none" stroke="${track}" stroke-width="10"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${c*v/100} ${c}"/></svg><div class="n"><div><b>${v}</b><span>out of 100</span></div></div></div>`;
+}
+const grad = it => { const g=(CATS[it.cat]||CATS.other).g.split(','); return `background:linear-gradient(135deg,${g[0]},${g[1]})`; };
+function tile(it){
+  const x = intel(it); const pl = placeOf(it); const d = pl.type!=='home' ? depFor(it, pl, CUR_FY) : null;
+  return `<div class="tile" onclick="itemSheet('${it.id}')"><div class="pic" style="${grad(it)}">${it.photo?`<img src="${it.photo}" alt="">`:(CATS[it.cat]||CATS.other).e}
+    <div class="badges">${x.recall&&!S.done['recall-'+it.id]?`<span class="chip bad">${icon('zap')}Recalled</span>`:''}${it.verified?`<span class="chip good">${icon('check')}Verified</span>`:''}</div><span class="chip st" style="background:rgba(255,255,255,.88);color:#3730A3">${x.status}</span></div>
+    <div class="body"><div class="nm">${esc(it.name)}</div><div class="meta">${esc(it.brand||'')}${it.room?' · '+esc(it.room):''}</div>
+    <div class="v">${d ? (d.excluded?`<span>Not deductible</span>`:`<span>FY deduction <b>${fmt(d.ded)}</b></span>`) : `<span>Replace <b>${fmt(x.replacement)}</b></span>`}<span>Worth <b>${fmt(x.resale)}</b></span></div></div></div>`;
+}
+function rightsClock(it, x){
+  const total = Math.max(x.life, num(it.warranty), x.age) * 1.1 || 1; const w = Math.min(100, num(it.warranty)/total*100), r = Math.min(100, x.life/total*100), now = Math.min(99, x.age/total*100);
+  return `<div class="clock"><i style="left:0;width:${r}%;background:var(--brand);opacity:.35"></i><i style="left:0;width:${w}%;background:var(--good)"></i><i style="left:${now}%;width:3px;background:var(--coral);border-radius:0"></i></div>`;
+}
+
+// ---------- Views ----------
+const VIEWS = {
+today(){
+  const P = portfolio(); const sc = score(P); const M = moments(); const ded = deductionsThisFY();
+  const hr = new Date().getHours(); const hi = hr<12?'Good morning':hr<18?'Good afternoon':'Good evening';
+  return page(`${hi}${S.me.name?', '+esc(S.me.name.split(' ')[0]):''}`, `${new Date().toLocaleDateString('en-AU',{weekday:'long', day:'numeric', month:'long'})} · ${M.length} thing${M.length===1?'':'s'} need${M.length===1?'s':''} you`,
+  `<button class="btn grad" onclick="openScanner()">${icon('scan')} Scan</button>`,
+  `<div class="grid g3">
+    <div class="card hero" style="grid-column:span 2"><div class="row" style="gap:22px;align-items:center;position:relative;z-index:1">${ring(sc.total)}
+      <div style="flex:1;min-width:0"><div class="muted" style="font-weight:700">Ownwise Score</div><div style="font-size:22px;font-weight:900;letter-spacing:-.02em;margin:2px 0 8px">${sc.total>=85?'Your home is well protected':sc.total>=65?'Good — a few gaps to close':'Let\'s close some gaps'}</div>
+      <div class="row wrap" style="gap:6px">${sc.parts.map(p=>`<span class="chip" style="background:rgba(255,255,255,.16);color:#fff">${p.k} ${p.v}/${p.max}</span>`).join('')}</div>
+      ${sc.next?`<button class="btn white sm" style="margin-top:12px" onclick="nav('${sc.next.go}')">${icon('sparkle')} ${sc.next.tip} · +${sc.gain}</button>`:''}</div></div></div>
+    <div class="card"><div class="muted" style="font-weight:700">Working for you</div>
+      <div class="big" style="margin:4px 0 2px">${fmt(P.total)}</div><div class="muted">of assets on your register · ${P.X.length} items</div>
+      <div style="border-top:1px solid var(--line);margin:12px 0 10px"></div>
+      <div class="row between"><span class="muted">Tax deductions FY ${fyLabel(CUR_FY)}</span><b class="good">${fmt(ded)}</b></div>
+      <div class="row between" style="margin-top:4px"><span class="muted">Protected past warranty</span><b>${fmt(P.protectedVal)}</b></div>
+      <div class="row between" style="margin-top:4px"><span class="muted">Verified photo evidence</span><b>${P.verified}/${P.X.length}</b></div></div>
+  </div>
+  <div class="row between" style="margin:26px 0 12px"><h3 style="margin:0;font-size:19px;letter-spacing:-.02em">This week</h3><span class="muted">Ownwise keeps checking your things — every day</span></div>
+  ${M.slice(0, S._all ? 99 : 5).map(m=>`<div class="moment"><div class="ic ${m.tone}">${m.e}</div><div style="flex:1;min-width:0"><div class="tag">${m.tag}</div><span class="mt">${m.t}</span><p>${m.d}</p><div class="row wrap" style="gap:8px">${m.act.map(([l,fn,cls])=>`<button class="btn sm ${cls||''}" onclick="${fn}">${l}</button>`).join('')}</div></div><button class="btn ghost sm" title="Dismiss" onclick="done('${m.id}')">${icon('x')}</button></div>`).join('') || `<div class="card empty">🎉 You're all caught up. We'll let you know when something needs you.</div>`}
+  ${M.length>5?`<button class="btn" style="width:100%;margin-top:12px" onclick="S._all=!S._all;render()">${S._all?'Show less':`Show ${M.length-5} more`}</button>`:''}`);
+},
+assets(){
+  const pl = S.places.find(p=>p.id===S.place) || S.places[0];
+  const items = S.items.filter(i => i.place===pl.id && i.status!=='sold');
+  const rooms = [...new Set(items.map(i=>i.room||'Other'))];
+  const s = pl.type!=='home' ? schedule(pl) : null;
+  const val = items.reduce((t,i)=>t+intel(i).replacement,0);
+  return page('Assets', 'Everything you own, in one living register.', `<button class="btn" onclick="placeModal()">${icon('plus')} Add place</button><button class="btn primary" onclick="addModal()">${icon('plus')} Add manually</button>`,
+  `<div class="places">${S.places.map(p=>{ const its=S.items.filter(i=>i.place===p.id&&i.status!=='sold'); const sc = p.type!=='home'?schedule(p):null; return `<button class="place ${p.id===pl.id?'on':''}" onclick="S.place='${p.id}';save();render()"><div class="row between"><span class="e">${PLACE_TYPES[p.type].e}</span><span class="chip ${p.type==='home'?'':'good'}">${p.type==='home'?its.length+' items':fmt(sc.total)+' FY ded.'}</span></div><b>${esc(p.name)}</b><small>${esc(p.sub||PLACE_TYPES[p.type].n)}</small></button>`; }).join('')}</div>
+  ${s?`<div class="card hero" style="margin-bottom:6px"><div class="row wrap between" style="position:relative;z-index:1;gap:16px"><div><div class="muted" style="font-weight:700">${pl.type==='rental'?'Depreciation register':'Business asset register'} · FY ${fyLabel(CUR_FY)}</div><div class="big">${fmt(s.total)}</div><div class="muted">${fmt(s.plant)} plant & equipment${s.cw?` · ${fmt(s.cw)} capital works`:''}${s.excluded.length?` · ${s.excluded.length} items not deductible`:''}</div></div><div class="row wrap"><button class="btn white" onclick="nav('#/reports?p=${pl.id}')">${icon('file')} Full register</button><button class="btn white" onclick="shareAccountant('${pl.id}')">${icon('send')} Send to accountant</button></div></div></div>`
+  :`<div class="row wrap muted" style="gap:16px;margin-bottom:4px"><span><b style="color:var(--ink)">${fmt(val)}</b> to replace</span><span><b style="color:var(--ink)">${items.filter(i=>i.verified).length}/${items.length}</b> verified</span></div>`}
+  ${rooms.map(r=>{ const L=items.filter(i=>(i.room||'Other')===r); return `<div class="roomhead">${esc(r)} <span>${L.length} · ${fmt(L.reduce((t,i)=>t+intel(i).replacement,0))}</span>${S.scans[r]?`<span class="chip good" style="margin-left:auto">${icon('check')}Scanned ${dstr(S.scans[r])}</span>`:`<button class="btn sm" style="margin-left:auto" onclick="openScanner('room','${esc(r)}')">${icon('scan')} Scan room</button>`}</div><div class="tiles">${L.map(tile).join('')}</div>`; }).join('') || `<div class="card empty" style="margin-top:12px"><div style="font-size:42px">📸</div><b>Nothing here yet</b><p>Scan a room and Ownwise will list everything in it.</p><button class="btn grad" onclick="openScanner('room')">${icon('scan')} Scan a room</button></div>`}`);
+},
+reports(){
+  const P = portfolio(); const sel = qp('p'); const tp = taxPlaces(); const pl = tp.find(p=>p.id===sel) || tp[0];
+  const Y = num(qp('y')) || CUR_FY;
+  return page('Reports', 'One register, three uses. Always up to date — nothing to rebuild at tax time or claim time.', '',
+  `<div class="grid g3" style="margin-bottom:18px">
+    <div class="card"><div style="font-size:30px">🧾</div><h3 style="margin-top:6px">Depreciation register</h3><p class="muted">Investment property & business assets, ready for your accountant.</p><b class="good" style="font-size:20px">${fmt(deductionsThisFY())}</b> <span class="muted">this FY</span></div>
+    <div class="card"><div style="font-size:30px">☂️</div><h3 style="margin-top:6px">Insurance claim pack</h3><p class="muted">Every item, photo, receipt and replacement value — by room.</p><button class="btn sm primary" onclick="claimPack()">${icon('print')} Build claim pack${lock('claimpack')}</button></div>
+    <div class="card"><div style="font-size:30px">📊</div><h3 style="margin-top:6px">Full asset register</h3><p class="muted">All places, all assets — exported as a spreadsheet.</p><button class="btn sm" onclick="exportCSV()">${icon('download')} Export CSV</button></div>
+  </div>
+  ${pl?depReport(pl, Y):''}
+  <div class="card" style="margin-top:16px"><div class="row between wrap"><div><h3>Contents cover check</h3><div class="muted">Your home's replacement value vs your sum insured</div></div><b class="${P.gap>0?'bad':'good'}" style="font-size:22px">${P.gap>0?fmt(P.gap)+' short':'Covered'}</b></div>
+    <div class="fgrid" style="margin-top:14px"><div><label class="f">Contents sum insured ($)</label><input class="input" type="number" value="${S.me.cover||''}" onchange="S.me.cover=num(this.value);save();render()"></div><div><label class="f">Bedrooms</label><input class="input" type="number" value="${S.me.home?.beds??3}" onchange="setHome('beds',num(this.value))"></div><div><label class="f">People</label><input class="input" type="number" value="${S.me.home?.people??2}" onchange="setHome('people',num(this.value))"></div><div><label class="f">Contents style</label><select class="input" onchange="setHome('tier',this.value)">${['basic','average','premium'].map(t=>`<option ${S.me.home?.tier===t?'selected':''}>${t}</option>`).join('')}</select></div></div>
+    <div class="row wrap muted" style="margin-top:12px;gap:18px"><span>Itemised: <b style="color:var(--ink)">${fmt(P.replacement)}</b></span><span>Typical home like yours: <b style="color:var(--ink)">${fmt(quickEstimate())}</b></span><span>Items over $2,500 to specify on your policy: <b style="color:var(--ink)">${P.homeX.filter(i=>i.x.replacement>2500).length}</b></span></div>
+    <div class="row wrap" style="margin-top:14px;gap:8px"><button class="btn grad" onclick="insuranceModal()">${icon('shield')} Compare quotes with your verified inventory</button></div></div>`);
+},
+account(){
+  return page('Settings', '', '',
+  `<div class="grid g2"><div class="card stack"><h3>You</h3>
+    <div><label class="f">Name</label><input class="input" value="${esc(S.me.name||'')}" onchange="S.me.name=this.value;save();render()"></div>
+    <div><label class="f">State (for your consumer agency)</label><select class="input" onchange="S.me.state=this.value;save()">${Object.keys(STATES).map(s=>`<option ${S.me.state===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div><label class="f">Accountant's email (for one-tap sharing)</label><input class="input" type="email" value="${esc(S.me.accountant||'')}" placeholder="you@yourfirm.com.au" onchange="S.me.accountant=this.value;save()"></div>
+    <div><label class="f">Appearance</label><div class="seg">${['auto','light','dark'].map(t=>`<button class="${S.theme===t?'on':''}" onclick="S.theme='${t}';save();render()">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div></div></div>
+  <div class="stack">${EMBED?`<div class="card stack"><h3>✨ AI vision</h3><p class="muted" style="margin:0">${aiLive()?'Connected ✓ — scans use Claude on your own account. The first scan asks your permission.':'Connecting… if this stays, scans run in demo mode.'}</p></div>`:''}<div class="card stack" ${EMBED?'hidden':''}><h3>✨ AI vision</h3><p class="muted" style="margin:0">Connect a Claude API key to identify real items and rooms from your camera. Without one, scanning runs in demo mode. Your key is stored only in this browser and sent only to Anthropic.</p>
+    <div><label class="f">Claude API key</label><input class="input" type="password" value="${esc(S.ai.key||'')}" placeholder="sk-ant-…" onchange="S.ai.key=this.value.trim();_client=null;save();render()"></div>
+    <div class="callout" style="font-size:12.5px">Prototype only. In production, images go through Ownwise's servers so no key is ever stored on a device.</div></div>
+  <div class="card stack"><h3>Your plan</h3><div class="row between"><div><b style="font-size:18px">${PLANS[tier()].n}</b>${S.plan?.trial?' <span class="chip good">Free trial</span>':''}<div class="muted">${PLANS[tier()].tag}</div></div><button class="btn grad sm" onclick="paywall()">${tier()==='free'?'Upgrade':'Change plan'}</button></div>${tier()!=='free'?`<button class="btn sm ghost" style="align-self:flex-start" onclick="setPlan('free')">Cancel subscription</button>`:''}</div>
+  <div class="card stack"><h3>📈 Business model</h3><p class="muted" style="margin:0">Founder view: see how this household generates revenue for Ownwise, and model ARR.</p><button class="btn sm" style="align-self:flex-start" onclick="nav('#/model')">Open founder view</button></div>
+  <div class="card stack"><h3>Your data</h3>
+    <div class="row wrap"><button class="btn" onclick="download('ownwise-backup-'+todayISO()+'.json',JSON.stringify(S),'application/json')">${icon('download')} Backup</button><label class="btn">${icon('up')} Restore<input type="file" accept=".json" hidden onchange="restore(this.files[0])"></label></div>
+    <div class="row wrap"><button class="btn" onclick="loadDemo()">Reload demo</button><button class="btn danger" onclick="askConfirm('Delete all Ownwise data on this device?',()=>{localStorage.removeItem(KEY);S=blank();render()})">${icon('trash')} Reset</button></div></div></div></div>`);
+},
+};
+
+var VIEWS_EXTRA; 
+function depReport(pl, Y){
+  const s = schedule(pl, Y);
+  const fc = Array.from({length:10},(_,k)=>{ const y=CUR_FY+k; const sc=schedule(pl,y); return {y, plant:sc.plant, cw:sc.cw}; });
+  const mx = Math.max(1, ...fc.map(f=>f.plant+f.cw));
+  const rows = s.rows.filter(r=>!r.d.excluded && !r.d.notYet);
+  const L1 = has('dep') ? '' : '<div class="lockwrap"><div class="blur">', L2 = has('dep') ? '' : `</div><div class="over"><div><div style="font-size:34px">🔓</div><h3 style="font-size:19px">Your ${fmt(s.total)} register is ready</h3><p class="muted">Unlock every asset's method and values, the 10-year forecast and the accountant workpaper.</p><button class="btn grad" onclick="paywall('dep')">Start 14-day free trial</button></div></div></div>`;
+  return `<div class="card" id="dep"><div class="row between wrap" style="gap:12px"><div><h3>${pl.type==='rental'?'🏘️':'💼'} ${esc(pl.name)} — ${pl.type==='rental'?'depreciation register':'business asset register'}</h3><div class="muted">${esc(pl.sub||'')} · Financial year ${fyLabel(Y)}</div></div>
+    <div class="row wrap"><div class="seg">${taxPlaces().map(p=>`<button class="${p.id===pl.id?'on':''}" onclick="nav('#/reports?p=${p.id}&y=${Y}')">${esc(p.name)}</button>`).join('')}</div>
+    <select class="input" style="width:auto" onchange="nav('#/reports?p=${pl.id}&y='+this.value)">${[CUR_FY-1,CUR_FY,CUR_FY+1].map(y=>`<option value="${y}" ${y===Y?'selected':''}>FY ${fyLabel(y)}</option>`).join('')}</select></div></div>
+  <div class="grid g3" style="margin:16px 0"><div class="kpi"><div class="label">Total deduction</div><div class="val good">${fmt(s.total)}</div></div><div class="kpi"><div class="label">Plant & equipment (Div 40)</div><div class="val">${fmt(s.plant)}</div></div><div class="kpi"><div class="label">${pl.type==='rental'?'Capital works (Div 43)':'Method'}</div><div class="val">${pl.type==='rental'?fmt(s.cw):'<span style="font-size:16px">Simplified depreciation</span>'}</div></div></div>
+  ${L1}<div class="tablewrap"><table><thead><tr><th>Asset</th><th>Acquired</th><th class="num">Cost</th><th>Method</th><th class="num">Opening</th><th class="num">Deduction</th><th class="num">Closing</th></tr></thead><tbody>
+  ${rows.map(({i,d})=>`<tr style="cursor:pointer" onclick="itemSheet('${i.id}')"><td><b>${esc(i.name)}</b><div class="muted" style="font-size:12px">${esc(i.brand)} ${esc(i.model)}${i.verified?' · ✓ verified':''}</div></td><td>${dstr(i.date)}</td><td class="num">${fmt(num(i.price))}</td><td style="font-size:12.5px">${d.method}</td><td class="num">${fmt(d.opening)}</td><td class="num"><b>${fmt(d.ded)}</b></td><td class="num">${fmt(d.closing)}</td></tr>`).join('')}
+  ${pl.type==='rental'&&s.cw?`<tr><td><b>Capital works — building</b><div class="muted" style="font-size:12px">2.5% of ${fmt(num(pl.buildCost))} construction cost · built ${dstr(pl.built)}</div></td><td>${dstr(pl.purchased)}</td><td class="num">${fmt(num(pl.buildCost))}</td><td style="font-size:12.5px">Div 43 · 2.5%</td><td class="num">—</td><td class="num"><b>${fmt(s.cw)}</b></td><td class="num">—</td></tr>`:''}
+  <tr><td colspan="5"><b>Total FY ${fyLabel(Y)}</b></td><td class="num"><b class="good">${fmt(s.total)}</b></td><td></td></tr></tbody></table></div>
+  ${s.excluded.length?`<div class="callout warn" style="margin-top:12px"><b>${s.excluded.length} assets not deductible:</b> ${s.excluded.map(r=>esc(r.i.name)).join(', ')}. ${esc(s.excluded[0].d.reason)}</div>`:''}
+  <h3 style="margin-top:20px">10-year forecast</h3><div class="bars">${fc.map(f=>`<div class="c" title="FY ${fyLabel(f.y)}: ${fmt(f.plant+f.cw)}"><small><b>${fmt((f.plant+f.cw)/1000,1).replace('$','$')}k</b></small><i style="height:${f.plant/mx*100}%"></i>${f.cw?`<i class="cw" style="height:${f.cw/mx*100}%;margin-top:-5px"></i>`:''}<small>${String(f.y).slice(2)}</small></div>`).join('')}</div>
+  <div class="row wrap" style="margin-top:16px;gap:8px"><button class="btn primary" onclick="shareAccountant('${pl.id}')">${icon('send')} Send to my accountant</button><button class="btn" onclick="exportDepCSV('${pl.id}',${Y})">${icon('download')} CSV workpaper</button><button class="btn" onclick="printPage()">${icon('print')} Print</button></div>${L2}
+  ${pl.type==='rental'&&!num(pl.buildCost)?`<div class="callout warn" style="margin-top:12px">No construction cost recorded — you may be missing capital works deductions. <a href="javascript:qsModal('${pl.id}')">Get a partner QS estimate →</a></div>`:''}
+  ${pl.type==='rental'?`<p class="muted" style="font-size:12px;margin-top:12px">Effective lives are indicative and must be checked against the ATO's current effective life determination. The capital works base comes from your builder's contract or a quantity surveyor's estimate — Ownwise doesn't estimate construction costs. <a href="javascript:qsModal('${pl.id}')">Need a QS estimate?</a></p>`:`<p class="muted" style="font-size:12px;margin-top:12px">Assumes a small business entity (aggregated turnover under $10m) using simplified depreciation and the $20,000 instant asset write-off.</p>`}</div>`;
+}
+
+// ---------- Actions ----------
+function askConfirm(msg, fn){ window._cf = fn; modal(`<h2>${esc(msg)}</h2><p class="muted">This can't be undone.</p><div class="row" style="margin-top:16px"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn coral" style="margin-left:auto" onclick="closeModal();window._cf()">Yes, delete</button></div>`); }
+function printPage(){ if (EMBED){ const st = document.querySelector('style'); const html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ownwise report</title>' + (st ? st.outerHTML : '') + '</head><body><main style="padding:20px;max-width:none">' + $('#main').innerHTML + '</main></body></html>'; toast('Saving a printable copy — open it and print from your phone'); return download('ownwise-report-'+todayISO()+'.html', html, 'text/html'); } window.print(); }
+function done(id){ S.done[id]=true; save(); render(); }
+function setHome(k,v){ S.me.home = S.me.home || {beds:3,people:2,tier:'average'}; S.me.home[k]=v; save(); render(); }
+function acceptInbox(id){ const b=S.inbox.find(x=>x.id===id); S.inbox=S.inbox.filter(x=>x.id!==id); S.items.push({id:uid(), place:b.place, name:b.name, brand:b.brand, model:b.model, cat:b.cat, room:b.room, price:b.price, date:b.date, retailer:b.merchant, warranty:b.warranty}); save(); render(); toast(`Added ✓ — ${b.name} is now tracked`); }
+function rejectInbox(id){ S.inbox=S.inbox.filter(x=>x.id!==id); save(); render(); }
+function resolveRecall(id){ S.done['recall-'+id]=true; const it=S.items.find(i=>i.id===id); it.status='sold'; S.found.push({label:`Recall refund — ${it.name}`, amount:num(it.price), date:todayISO()}); save(); render(); toast('Nice — marked as returned. Stay safe.'); }
+function loadDemo(){ const d=demo(); Object.assign(S, d, {done:{}, claims:[], found:[], place:'home', plan:{tier:'free'}, usage:{}, rev:[]}); save(); render(); toast('Demo household loaded'); }
+function download(name, data, type){ if (EMBED){ const copyBox = () => modal(`<h2>${esc(name)}</h2><p class="muted">Downloads aren't available in this preview. Copy the contents instead.</p><textarea class="input" id="dltext" rows="10" style="font-family:ui-monospace,monospace;font-size:12px" readonly>${esc(data)}</textarea><div class="row" style="margin-top:12px"><button class="btn" onclick="closeModal()">Close</button><button class="btn primary" style="margin-left:auto" onclick="copyText('#dltext')">${icon('copy')} Copy</button></div>`); if (DL){ DL.save({filename:name, data}).then(()=>toast('Saved to your device ✓')).catch(e=>{ if (!e || e.code !== 'declined') copyBox(); }); return; } return copyBox(); } const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
+function restore(f){ if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ S=Object.assign(blank(),JSON.parse(r.result)); save(); render(); toast('Restored'); }catch(e){ toast('Not a valid Ownwise backup'); } }; r.readAsText(f); }
+function copyText(sel){ const el=$(sel); const t=el.tagName==='TEXTAREA'?el.value:el.innerText; const fb=()=>{ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('Copied ✓'); }; if (navigator.clipboard) navigator.clipboard.writeText(t).then(()=>toast('Copied ✓'), fb); else fb(); }
+const csv = rows => rows.map(r=>r.map(c=>`"${String(c??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+function exportCSV(){ const rows=[['Place','Type','Room','Asset','Brand','Model','Category','Acquired','Supplier','Cost','Replacement value','Resale value','Warranty (yrs)','Verified photo','Second-hand']]; S.items.filter(i=>i.status!=='sold').forEach(i=>{ const x=intel(i), p=placeOf(i); rows.push([p.name,p.type,i.room,i.name,i.brand,i.model,(CATS[i.cat]||CATS.other).n,i.date,i.retailer,num(i.price),x.replacement.toFixed(2),x.resale.toFixed(2),i.warranty,i.verified?i.verified.at:'',i.secondHand?'Y':'']); }); download('ownwise-asset-register.csv', csv(rows), 'text/csv'); }
+function exportDepCSV(pid, Y=CUR_FY){ if (!has('dep')) return paywall('dep'); const pl=S.places.find(p=>p.id===pid); const s=schedule(pl,Y); const rows=[[`${pl.name} — ${pl.type==='rental'?'Depreciation register':'Business asset register'} FY ${fyLabel(Y)}`],[],['Asset','Brand','Model','Acquired','Cost','Effective life (yrs, indicative)','Method','Opening value','Deduction','Closing value','Second-hand','Notes']];
+  s.rows.forEach(({i,d})=>rows.push([i.name,i.brand,i.model,i.date,num(i.price),d.el||'',d.excluded?'Not deductible':d.method,d.opening?.toFixed(2)??'',d.ded?.toFixed(2)??'0',d.closing?.toFixed(2)??'',i.secondHand?'Y':'',d.excluded?d.reason:'']));
+  if (s.cw) rows.push(['Capital works (Div 43)','','',pl.purchased,pl.buildCost,40,'2.5% p.a.','',s.cw.toFixed(2),'','','Construction cost per owner records']);
+  rows.push([],['Total','','','','','','','',s.total.toFixed(2)]); download(`ownwise-${pl.id}-FY${Y}.csv`, csv(rows), 'text/csv'); }
+function shareAccountant(pid){
+  if (!has('dep')) return paywall('dep');
+  const pl=S.places.find(p=>p.id===pid); const s=schedule(pl);
+  const body = `Hi,\n\nHere's my ${pl.type==='rental'?'depreciation':'business asset'} register for ${pl.name}, FY ${fyLabel(CUR_FY)}, from Ownwise.\n\nTotal deduction: ${fmt(s.total,2)} (plant & equipment ${fmt(s.plant,2)}${s.cw?`, capital works ${fmt(s.cw,2)}`:''}).\n${s.rows.filter(r=>!r.d.excluded&&!r.d.notYet).length} assets, each with acquisition date, cost, method and photo evidence. ${s.excluded.length} second-hand assets are listed separately as non-deductible.\n\nThe CSV workpaper is attached. Could you please review it before we lodge?\n\nThanks,\n${S.me.name||''}`;
+  modal(`<h2>Send to your accountant</h2><p class="muted">Download the workpaper, then send this note. In the full product your accountant gets a live, read-only link that's always current.</p>
+  <div class="fgrid" style="margin:12px 0"><div><label class="f">Accountant's email</label><input class="input" id="acc" value="${esc(S.me.accountant||'')}" placeholder="you@yourfirm.com.au"></div></div>
+  <div class="letter" id="letter">${esc(body)}</div>
+  <div class="row wrap" style="margin-top:14px"><button class="btn" onclick="exportDepCSV('${pid}')">${icon('download')} Download workpaper</button><button class="btn" onclick="copyText('#letter')">${icon('copy')} Copy note</button><button class="btn primary" style="margin-left:auto" onclick="S.me.accountant=$('#acc').value;save();location.href='mailto:'+encodeURIComponent($('#acc').value)+'?subject='+encodeURIComponent('${esc(pl.name)} — asset register FY ${fyLabel(CUR_FY)}')+'&body='+encodeURIComponent($('#letter').innerText)">${icon('send')} Open email</button></div>`);
+}
+
+// ---------- Modals ----------
+function modal(html){ $('#modal-root').innerHTML = `<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">${html}</div></div>`; }
+function closeModal(){ stopCamera(); $('#modal-root').innerHTML=''; }
+
+function valueChart(it, x){
+  const W=600,H=170,P=26; const span = Math.max(x.life*1.2, x.age+1, 3);
+  const px = t => P + t/span*(W-2*P); const rep = t => (num(it.value)||num(it.price))*Math.pow(1.03,t);
+  const maxV = Math.max(rep(span), x.resaleAt(0)) * 1.05 || 1; const py = v => H-P - v/maxV*(H-2*P);
+  const pts = f => Array.from({length:41},(_,k)=>{ const t=k/40*span; return `${px(t).toFixed(1)},${py(f(t)).toFixed(1)}`; }).join(' ');
+  const wy = Math.min(span, num(it.warranty)); const step = Math.max(1, Math.ceil(span/8));
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">
+    ${appreciates(it.cat)?'':`<rect x="${px(0)}" y="${P-6}" width="${px(Math.min(x.life,span))-px(0)}" height="${H-2*P+6}" fill="var(--brand)" opacity=".08" rx="6"/>`}
+    ${wy>0?`<rect x="${px(0)}" y="${P-6}" width="${px(wy)-px(0)}" height="${H-2*P+6}" fill="var(--good)" opacity=".13" rx="6"/>`:''}
+    <polyline points="${pts(rep)}" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="5 5"/>
+    <polyline points="${pts(x.resaleAt)}" fill="none" stroke="var(--brand)" stroke-width="3"/>
+    <line x1="${px(x.age)}" x2="${px(x.age)}" y1="${P-8}" y2="${H-P}" stroke="var(--coral)" stroke-width="2"/><circle cx="${px(x.age)}" cy="${py(x.resale)}" r="5" fill="var(--coral)"/>
+    <text x="${px(x.age)+6}" y="${P+4}" font-size="11" fill="var(--coral)" font-weight="700">Today</text>
+    ${wy>0?`<text x="${px(0)+6}" y="${H-P-6}" font-size="11" fill="var(--good)" font-weight="700">Warranty</text>`:''}
+    ${appreciates(it.cat)?'':`<text x="${Math.min(px(x.life), W-P)-6}" y="${P+20}" font-size="11" fill="var(--brand)" text-anchor="end" font-weight="700">Expected life</text>`}
+    <line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="var(--line)"/>
+    ${Array.from({length:Math.floor(span)+1},(_,k)=>k).filter(k=>k%step===0).map(k=>`<text x="${px(k)}" y="${H-P+16}" font-size="10.5" fill="var(--ink-3)" text-anchor="middle">${new Date(it.date).getFullYear()+k}</text>`).join('')}
+  </svg><div class="row wrap muted" style="gap:14px;font-size:12px"><span><b style="color:var(--brand)">━</b> Resale value</span><span><b>┅</b> Cost to replace</span>${appreciates(it.cat)?'':'<span><b style="color:var(--brand);opacity:.5">■</b> Expected life (consumer rights)</span>'}</div>`;
+}
+function itemSheet(id){
+  const it = S.items.find(i=>i.id===id); const x = intel(it); const pl = placeOf(it); const d = depFor(it, pl, CUR_FY); const ap = appreciates(it.cat);
+  modal(`<div class="hero-pic" style="${grad(it)}">${it.photo?`<img src="${it.photo}" alt="">`:(CATS[it.cat]||CATS.other).e}</div>
+  <div class="row between wrap" style="gap:8px"><div style="min-width:0"><h2>${esc(it.name)}</h2><div class="muted">${esc(it.brand)} ${esc(it.model)} · ${esc(pl.name)} · ${esc(it.room||'')}</div></div>
+  <div class="row wrap" style="gap:6px">${it.verified?`<span class="chip good" title="Photo taken in-app, time-stamped${it.verified.hash&&it.verified.hash!=='demo'?' · SHA-256 '+it.verified.hash:''}">${icon('check')} Verified ${dstr(it.verified.at)}</span>`:`<span class="chip">No photo evidence</span>`}<span class="chip ${x.tone}">${x.status}</span></div></div>
+  ${x.recall&&!S.done['recall-'+id]?`<div class="callout bad" style="margin-top:12px"><b>⚠️ Safety recall:</b> ${esc(x.recall.hazard)} <a href="javascript:recallLetter('${id}')">Get refund letter →</a></div>`:''}
+  <div class="grid g3" style="margin-top:16px;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"><div class="kpi"><div class="label">Paid</div><div class="val">${it.price?fmt(num(it.price)):'—'}</div><div class="muted" style="font-size:12px">${dstr(it.date)}</div></div><div class="kpi"><div class="label">${ap?'Valued at':'Worth today'}</div><div class="val">${fmt(x.resale)}</div></div><div class="kpi"><div class="label">Replace new</div><div class="val">${fmt(x.replacement)}</div></div>
+  ${d&&!d.excluded?`<div class="kpi"><div class="label">Tax deduction FY ${fyLabel(CUR_FY)}</div><div class="val good">${fmt(d.ded)}</div><div class="muted" style="font-size:12px">${d.method}</div></div>`:''}</div>
+  ${d&&d.excluded?`<div class="callout warn" style="margin-top:12px">${esc(d.reason)}</div>`:''}
+  <div class="card" style="margin-top:14px;padding:14px">${valueChart(it,x)}</div>
+  ${ap?`<div class="callout" style="margin-top:12px">${it.irreplaceable?'Marked <b>irreplaceable</b> — it\'s on your evacuation grab list. ':''}Valuables like this usually need to be <b>specified</b> on your contents policy to be fully covered.</div>`
+  :num(it.price)?`<div class="callout ${x.tone==='warn'?'warn':x.tone==='good'?'good':''}" style="margin-top:12px">${x.inWarranty?`Warranty runs until <b>${dstr(x.warrantyEnd)}</b>. `:''}${x.rightsLeft>0?`Under the Australian Consumer Law, a ${fmt(num(it.price))} ${x.c.n.toLowerCase()} should reasonably last about <b>${yrs(x.life)}</b> (to ~${new Date(x.rightsEnd).getFullYear()}). If it fails before then, you may be entitled to a repair, replacement or refund — even after the warranty.`:'It\'s past the typical lifespan for its category, so a claim is less likely to succeed.'}</div>`:''}
+  ${pl.type==='rental'?`<label class="row" style="margin-top:12px;font-size:13.5px"><input type="checkbox" ${it.secondHand?'checked':''} onchange="S.items.find(i=>i.id==='${id}').secondHand=this.checked;save();render();itemSheet('${id}')"> Came with the property when purchased (second-hand)</label>`:''}
+  <div class="row wrap" style="margin-top:16px;gap:8px">${!ap&&num(it.price)?`<button class="btn coral" onclick="brokeModal('${id}')">${icon('zap')} It broke</button>`:''}<label class="btn">${icon('camera')} ${it.photo?'Retake':'Add'} photo<input type="file" accept="image/*" capture="environment" hidden onchange="photoFor('${id}',this.files[0])"></label>${!ap?`<button class="btn" onclick="sellModal('${id}')">${it.listed?'Listed '+fmt(it.listed.price):'Sell · '+fmt(offersFor(it).payout)}</button>`:''}${!ap&&num(it.price)&&x.rightsLeft<=1?`<button class="btn" onclick="replaceModal('${id}')">Replace</button>`:''}
+  <select class="input" style="width:auto" onchange="S.items.find(i=>i.id==='${id}').place=this.value;save();render();itemSheet('${id}')">${S.places.map(p=>`<option value="${p.id}" ${p.id===it.place?'selected':''}>${PLACE_TYPES[p.type].e} ${esc(p.name)}</option>`).join('')}</select>
+  <button class="btn ghost danger" style="margin-left:auto" onclick="askConfirm('Remove this item?',()=>{S.items=S.items.filter(i=>i.id!=='${id}');save();closeModal();render()})">${icon('trash')}</button></div>`);
+}
+function photoFor(id, file){ compress(file, async d => { const it=S.items.find(i=>i.id===id); it.photo=d; it.verified={at:todayISO(), hash: await sha(d)}; save(); render(); itemSheet(id); toast('Verified photo saved ✓'); }); }
+async function sha(s){ try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(b)].slice(0,8).map(x=>x.toString(16).padStart(2,'0')).join(''); } catch(e){ return 'local'; } }
+function compress(file, cb, max=900){ if(!file) return; const r=new FileReader(); r.onload=()=>{ const img=new Image(); img.onload=()=>{ const s=Math.min(1,max/Math.max(img.width,img.height)); const c=document.createElement('canvas'); c.width=img.width*s; c.height=img.height*s; c.getContext('2d').drawImage(img,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',.72)); }; img.src=r.result; }; r.readAsDataURL(file); }
+
+function addModal(prefill={}){
+  const p = Object.assign({name:'', brand:'', model:'', price:'', date:todayISO(), retailer:'', warranty:1, cat:'other', room:'Living', place:S.place||S.places[0]?.id}, prefill);
+  modal(`<h2>${prefill.ai?'✨ Here\'s what we found':'Add an asset'}</h2><p class="muted">${prefill.ai?'Check the details and tap Save. You can edit anything.':'Or tap Scan to let AI fill this in from a photo.'}</p>
+  ${p.photo?`<div class="hero-pic" style="height:170px;margin:12px 0"><img src="${p.photo}" alt=""></div>`:''}
+  ${prefill.note?`<div class="callout" style="margin-bottom:12px">${prefill.note}</div>`:''}
+  <form class="stack" style="margin-top:12px" onsubmit="event.preventDefault();saveItem(this)">
+    <input type="hidden" name="photo" value="${p.photo||''}"><input type="hidden" name="hash" value="${p.hash||''}">
+    <div><label class="f">What is it?</label><input class="input" name="name" required value="${esc(p.name)}" placeholder="e.g. 65 inch TV" oninput="this.form.cat.value=detectCat(this.value)"></div>
+    <div class="fgrid"><div><label class="f">Brand</label><input class="input" name="brand" value="${esc(p.brand)}"></div><div><label class="f">Model</label><input class="input" name="model" value="${esc(p.model)}"></div></div>
+    <div class="fgrid"><div><label class="f">${prefill.ai?'Est. cost new ($)':'Price paid ($)'}</label><input class="input" name="price" type="number" step="0.01" min="0" required value="${p.price}"></div><div><label class="f">Date bought</label><input class="input" name="date" type="date" value="${p.date}" required></div><div><label class="f">Warranty (yrs)</label><input class="input" name="warranty" type="number" min="0" value="${p.warranty}"></div></div>
+    <div class="fgrid"><div><label class="f">Place</label><select class="input" name="place">${S.places.map(x=>`<option value="${x.id}" ${x.id===p.place?'selected':''}>${PLACE_TYPES[x.type].e} ${esc(x.name)}</option>`).join('')}</select></div><div><label class="f">Room</label><select class="input" name="room">${ROOMS.map(r=>`<option ${r===p.room?'selected':''}>${r}</option>`).join('')}</select></div><div><label class="f">Category</label><select class="input" name="cat">${Object.entries(CATS).map(([k,v])=>`<option value="${k}" ${k===p.cat?'selected':''}>${v.e} ${v.n}</option>`).join('')}</select></div></div>
+    <div><label class="f">Where from</label><input class="input" name="retailer" value="${esc(p.retailer)}" placeholder="e.g. JB Hi-Fi"></div>
+    <div class="row"><button type="button" class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" style="margin-left:auto">${icon('check')} Save</button></div>
+  </form>`);
+}
+function saveItem(f){ const it={id:uid(), place:f.place.value, name:f.name.value.trim(), brand:f.brand.value.trim(), model:f.model.value.trim(), price:num(f.price.value), date:f.date.value, retailer:f.retailer.value.trim(), warranty:num(f.warranty.value), cat:f.cat.value, room:f.room.value, photo:f.photo.value||null};
+  if (it.photo) it.verified = {at:todayISO(), hash:f.hash.value||'local'};
+  S.items.push(it); S.place=it.place; save(); closeModal(); render(); toast(intel(it).recall ? '⚠️ Saved — and this product has a safety recall!' : 'Saved ✓ — value, rights and recalls now tracked'); }
+function placeModal(){
+  if (S.places.length >= PLANS[tier()].places) return paywall('places');
+  modal(`<h2>Add a place</h2><p class="muted">Each place gets its own register. Investment properties and businesses also get a depreciation register.</p>
+  <form class="stack" style="margin-top:14px" onsubmit="event.preventDefault();savePlace(this)">
+    <div class="fgrid">${Object.entries(PLACE_TYPES).map(([k,v],n)=>`<label class="opt"><input type="radio" name="type" value="${k}" ${n===1?'checked':''} onchange="document.getElementById('rf').style.display=this.value==='rental'?'block':'none'">${v.e} <b>${v.n}</b><br><small class="muted">${v.d}</small></label>`).join('')}</div>
+    <div class="fgrid"><div><label class="f">Name</label><input class="input" name="name" required placeholder="e.g. 4/22 Smith St"></div><div><label class="f">Suburb / description</label><input class="input" name="sub" placeholder="e.g. Unit · Footscray VIC"></div></div>
+    <div id="rf" class="stack"><div class="fgrid"><div><label class="f">Settlement date</label><input class="input" type="date" name="purchased"></div><div><label class="f">Construction completed</label><input class="input" type="date" name="built"></div></div>
+      <div class="fgrid"><div><label class="f">Construction cost ($) <span class="muted">from contract or QS report</span></label><input class="input" type="number" name="buildCost" placeholder="optional"></div><div><label class="f">Method</label><select class="input" name="method"><option value="dv">Diminishing value</option><option value="pc">Prime cost</option></select></div></div></div>
+    <div class="row"><button type="button" class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" style="margin-left:auto">Add place</button></div></form>`);
+}
+function savePlace(f){ const p={id:uid(), type:f.type.value, name:f.name.value.trim(), sub:f.sub.value.trim()}; if(p.type==='rental') Object.assign(p,{purchased:f.purchased.value, built:f.built.value, buildCost:num(f.buildCost.value), method:f.method.value}); S.places.push(p); S.place=p.id; save(); closeModal(); nav('#/assets'); render(); toast('Place added — now scan a room'); }
+
+// ---------- Scanner: AI item capture & room scan ----------
+let _stream = null, _client = null, _shots = [];
+function stopCamera(){ if (_stream){ _stream.getTracks().forEach(t=>t.stop()); _stream=null; } }
+function openScanner(mode, room){
+  if (mode && scansLeft() <= 0) return paywall('scan');
+  if (!mode) return modal(`<h2>What would you like to scan?</h2><p class="muted">${aiLive()?'✨ AI vision is connected.':'Demo mode — connect AI vision in Settings to scan your real things.'} · ${scansLeft()===Infinity?'Unlimited scans':`<b>${scansLeft()} of ${PLANS.free.scans}</b> free scans left this month`}</p>
+  <div class="modes" style="margin-top:16px">
+    <button class="mode" onclick="openScanner('room')"><div class="e">🏠</div><b>Scan a room</b><small>Pan your camera around. AI lists everything with values.</small></button>
+    <button class="mode" onclick="openScanner('item')"><div class="e">📸</div><b>Snap an item</b><small>One photo. AI identifies brand, model & price.</small></button>
+    <button class="mode" onclick="openScanner('receipt')"><div class="e">🧾</div><b>Scan a receipt</b><small>Reads the store, date, items & prices.</small></button>
+  </div>
+  <div class="callout" style="margin-top:16px;font-size:13px">📨 <b>Tip:</b> connect your email or bank and new purchases add themselves — Ownwise asks you to confirm with one tap.</div>`);
+  _shots = []; const R = room || 'Living';
+  const live = aiLive(); const photoMode = live && EMBED;
+  modal(`<div class="row between"><div><h2>${mode==='room'?'Scan your '+esc(R==='Living'?'living room':R.toLowerCase()):mode==='item'?'Snap an item':'Scan a receipt'}</h2><div class="muted">${photoMode?(mode==='room'?`Take up to ${SAMPLE_MAX} photos from different corners, then tap Analyse.`:mode==='receipt'?'Take a clear photo of the whole receipt.':'Take a photo that fills the frame with the item.'):live?(mode==='room'?'Slowly pan around the room, then tap Capture. Add up to 3 angles.':'Fill the frame, then tap Capture.'):'Demo scan of a sample room — connect AI vision in Settings to scan your own.'}</div></div><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div>
+  <div class="scanner" id="scanner" style="margin-top:14px">${photoMode?`<div id="ph" style="position:absolute;inset:0;display:grid;place-items:center;color:#fff;text-align:center;padding:24px"><div><div style="font-size:46px">📸</div><b style="font-size:17px">Tap “Take photo” below</b><div style="opacity:.75;font-size:13px;margin-top:4px">Your phone camera opens. Claude identifies what's in the shot.</div></div></div>`:live?'<video id="cam" autoplay playsinline muted></video>':demoRoomSVG()}<div class="corners"></div><div class="beam"></div><div id="dets"></div>
+    <div class="scanhud"><span class="pill" id="hudl">${photoMode?'✨ AI ready':live?'Starting camera…':'🔎 Detecting items…'}</span><span class="pill" id="hudr">${live?'':'0 found'}</span></div></div>
+  <div id="scanbar" class="row wrap" style="margin-top:14px;gap:8px">${photoMode?shotButtons(mode, R):live?`<button class="btn grad" onclick="capture('${mode}','${esc(R)}')">${icon('camera')} Capture</button><label class="btn">${icon('up')} Upload photo<input type="file" accept="image/*" hidden onchange="compress(this.files[0],d=>{_shots.push(d);analyse('${mode}','${esc(R)}')},1400)"></label>`:''}
+  <select class="input" id="scanroom" style="width:auto;margin-left:auto">${ROOMS.map(r=>`<option ${r===R?'selected':''}>${r}</option>`).join('')}</select></div>
+  <div id="scanres"></div>`);
+  if (photoMode) {} else if (live) startCamera(); else runDemoScan(mode, R);
+}
+async function startCamera(){
+  try { _stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:{ideal:1600}}, audio:false}); const v=$('#cam'); if(!v) return stopCamera(); v.srcObject=_stream; $('#hudl').textContent='● Live'; }
+  catch(e){ $('#hudl').textContent='Camera unavailable — upload a photo instead'; }
+}
+function shotButtons(mode, room){ const n = _shots.length; const r = esc(room);
+  return `<label class="btn grad">${icon('camera')} ${n?'Add another angle':'Take photo'}<input type="file" accept="image/*" capture="environment" hidden onchange="addShot(this.files[0],'${mode}','${r}')"></label><label class="btn">${icon('up')} Choose from photos<input type="file" accept="image/*" hidden onchange="addShot(this.files[0],'${mode}','${r}')"></label>${n?`<button class="btn primary" onclick="analyse('${mode}','${r}')">${icon('sparkle')} Analyse ${n} photo${n>1?'s':''}</button>`:''}`; }
+function addShot(file, mode, room){ if (!file) return; compress(file, d => { _shots.push(d); const sc = $('#scanner'); sc.querySelector('#ph')?.remove(); sc.querySelector('img.shot')?.remove(); sc.insertAdjacentHTML('afterbegin', `<img class="shot" src="${d}">`); $('#hudr').textContent = `${_shots.length} photo${_shots.length>1?'s':''}`;
+  if (mode !== 'room' || _shots.length >= SAMPLE_MAX) return analyse(mode, room);
+  const sel = $('#scanroom'); const v = sel ? sel.value : room; $('#scanbar').innerHTML = shotButtons(mode, v) + `<select class="input" id="scanroom" style="width:auto;margin-left:auto">${ROOMS.map(r=>`<option ${r===v?'selected':''}>${r}</option>`).join('')}</select>`; toast('Got it — add another angle or tap Analyse'); }, 1400); }
+function capture(mode, room){
+  const v = $('#cam'); if (!v || !v.videoWidth) return toast('No camera frame yet — try Upload photo');
+  const s = Math.min(1, 1400/Math.max(v.videoWidth, v.videoHeight)); const c=document.createElement('canvas'); c.width=v.videoWidth*s; c.height=v.videoHeight*s; c.getContext('2d').drawImage(v,0,0,c.width,c.height);
+  _shots.push(c.toDataURL('image/jpeg',.8)); $('#hudr').textContent = `${_shots.length} angle${_shots.length>1?'s':''}`;
+  if (mode==='room' && _shots.length < 3){ $('#scanbar').innerHTML = `<button class="btn" onclick="capture('room','${room}')">${icon('camera')} Add another angle</button><button class="btn grad" onclick="analyse('room','${room}')">${icon('sparkle')} Analyse ${_shots.length} angle${_shots.length>1?'s':''}</button><select class="input" id="scanroom" style="width:auto;margin-left:auto">${ROOMS.map(r=>`<option ${r===room?'selected':''}>${r}</option>`).join('')}</select>`; toast('Got it — add another angle or analyse'); }
+  else analyse(mode, room);
+}
+const AI_SCHEMA = {type:'object', additionalProperties:false, required:['items'], properties:{items:{type:'array', items:{type:'object', additionalProperties:false,
+  required:['name','brand','model','category','condition','new_price_aud','confidence'],
+  properties:{name:{type:'string'}, brand:{type:'string'}, model:{type:'string'}, category:{type:'string', enum:Object.keys(CATS)}, condition:{type:'string', enum:['new','good','fair','poor']}, new_price_aud:{type:'number'}, confidence:{type:'string', enum:['high','medium','low']}}}}}};
+async function anthropicClient(){
+  if (!_client){ const mod = await import('https://esm.sh/@anthropic-ai/sdk'); const Anthropic = mod.default || mod.Anthropic; _client = new Anthropic({apiKey:S.ai.key, dangerouslyAllowBrowser:true}); }
+  return _client;
+}
+async function analyse(mode, room){
+  stopCamera(); room = $('#scanroom')?.value || room;
+  const sc = $('#scanner'); if (sc && _shots[0]) { sc.querySelector('video')?.remove(); sc.insertAdjacentHTML('afterbegin', `<img class="shot" src="${_shots[0]}">`); }
+  $('#hudl').textContent = '✨ AI is looking…'; $('#scanbar').innerHTML = '';
+  const prompt = mode==='receipt'
+    ? 'This is a photo of a retail receipt or invoice from an Australian store. List each durable physical product purchased (skip consumables, groceries, gift cards, delivery fees). Use the printed price (AUD, GST-inclusive) as new_price_aud. Use the brand and model as printed, or an empty string if not shown.'
+    : `You are cataloguing physical assets for an Australian household's insurance, consumer-rights and tax-depreciation register. ${mode==='room'?`These ${_shots.length} photo(s) show different angles of one room — list each distinct durable asset worth roughly $50 or more exactly once (no duplicates across angles). Ignore people, pets, walls, windows, built-in cabinetry and small consumables.`:'This photo shows a single item — return just that one item.'} For each item give a short descriptive name, the brand and model if visible or confidently identifiable (otherwise an empty string), the best-fitting category, its visible condition, and a realistic estimate of what it would cost to buy new today from a mainstream Australian retailer, in AUD.`;
+  try {
+    let parsed;
+    if (EMBED){
+      if (!SAMPLE) throw new Error('AI isn\'t available in this view.');
+      const fmt = `\n\nReply with only JSON in this shape: {"items":[{"name":string,"brand":string,"model":string,"category":one of ${JSON.stringify(Object.keys(CATS))},"condition":"new"|"good"|"fair"|"poor","new_price_aud":number,"confidence":"high"|"medium"|"low"}]}. Use an empty string for unknown brand or model.`;
+      try { parsed = await SAMPLE.json(prompt + fmt, {images: _shots.slice(0, SAMPLE_MAX).map(dataToBlob), modelTier:'default'}); }
+      catch(e){ const why = {not_granted:'You chose not to let this page use Claude.', rate_limited:'Too many scans right now — try again in a minute.', image_rejected:'That photo couldn\'t be read — try another.', refused:'Claude couldn\'t analyse that photo.', invalid_json:'The answer came back garbled — tap Scan to try again.'}[e && e.code]; throw new Error(why || (e && e.message) || 'Something went wrong'); }
+    } else {
+    const client = await anthropicClient();
+    const res = await client.beta.messages.create({
+      model:'claude-opus-5-5', max_tokens:16000,
+      betas:['server-side-fallback-2026-07-01'], fallbacks:'default',
+      output_config:{effort:'low', format:{type:'json_schema', schema:AI_SCHEMA}},
+      messages:[{role:'user', content:[..._shots.map(d=>({type:'image', source:{type:'base64', media_type:'image/jpeg', data:d.split(',')[1]}})), {type:'text', text:prompt}]}],
+    });
+    if (res.stop_reason === 'refusal') throw new Error('The AI declined to analyse this image.');
+    const txt = res.content.find(b=>b.type==='text')?.text || '{"items":[]}';
+    parsed = JSON.parse(txt);
+    }
+    useScan();
+    const items = ((parsed && parsed.items)||[]).map(i=>({name:i.name, brand:i.brand, model:i.model, cat:CATS[i.category]?i.category:'other', price:Math.round(i.new_price_aud), cond:i.condition, conf:i.confidence}));
+    const hash = await sha(_shots[0]);
+    if (mode==='item' && items.length){ const i=items[0]; addModal({ai:true, name:i.name, brand:i.brand, model:i.model, cat:i.cat, price:i.price, room, photo:_shots[0], hash, note:`✨ Identified with ${i.conf} confidence · condition: ${i.cond}. Price is an estimate of the cost new — change it to what you paid if you know it.`}); return; }
+    showResults(items, room, mode, _shots[0], hash);
+  } catch(e){
+    $('#hudl').textContent = 'Something went wrong';
+    $('#scanres').innerHTML = `<div class="callout bad" style="margin-top:14px"><b>AI analysis failed:</b> ${esc(e.message||e)}<br><span class="muted">${EMBED?'Tap Scan to try again.':'Check your API key in Settings and your internet connection.'}</span></div>`;
+  }
+}
+function showResults(items, room, mode, photo, hash){
+  window._found = items.map(i=>({...i, on:true}));
+  const total = items.reduce((s,i)=>s+num(i.price),0);
+  $('#hudl').textContent = `✓ Scan complete`; $('#hudr').textContent = `${items.length} found`;
+  $('#scanres').innerHTML = `<div class="row between" style="margin:18px 0 6px"><h3 style="margin:0">${items.length} items found · ${fmt(total)}</h3><span class="muted">Tick what to add</span></div>
+  ${items.map((i,n)=>`<label class="detrow"><input type="checkbox" checked onchange="_found[${n}].on=this.checked"><div class="ava" style="${grad(i)}">${(CATS[i.cat]||CATS.other).e}</div><div style="flex:1;min-width:0"><b>${esc(i.name)}</b><div class="muted" style="font-size:12.5px">${esc([i.brand,i.model].filter(Boolean).join(' ')||(CATS[i.cat]||CATS.other).n)}${i.cond?` · ${esc(i.cond)}`:''}</div></div><input class="input" type="number" value="${i.price}" style="width:100px;text-align:right" onchange="_found[${n}].price=num(this.value)"></label>`).join('')}
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn grad" style="margin-left:auto" onclick="addFound('${esc(room)}','${mode}')">${icon('plus')} Add to ${esc($('#scanroom')?.value||room)}</button></div>
+  <p class="muted" style="font-size:12px;margin-top:10px">Prices are AI estimates of the cost new. Edit them, or add receipts later for exact figures.</p>`;
+  window._foundPhoto = {photo, hash};
+}
+function addFound(room, mode){
+  room = $('#scanroom')?.value || room; const ph = window._foundPhoto || {};
+  const sel = window._found.filter(i=>i.on); const date = todayISO();
+  sel.forEach(i => S.items.push({id:uid(), place:S.place||S.places[0].id, name:i.name, brand:i.brand||'', model:i.model||'', cat:i.cat, room, price:num(i.price), date: i.date||date, retailer:i.retailer||'', warranty:1, scanned:true, verified: ph.photo && mode!=='receipt' ? {at:date, hash:ph.hash||'local'} : undefined}));
+  if (mode!=='receipt') S.scans[room] = date;
+  save(); closeModal(); nav('#/assets'); render(); toast(`Added ${sel.length} items to ${room} ✓`);
+}
+// --- Demo room scan (no API key) ---
+const DEMO_ROOM = [
+  {name:'3-seat fabric sofa', brand:'King Living', model:'Jasper', cat:'sofa', price:3490, cond:'good', box:[16,46,46,24]},
+  {name:'55" 4K smart TV', brand:'LG', model:'C4 OLED', cat:'tv', price:2199, cond:'good', box:[58,22,25,23]},
+  {name:'TV cabinet', brand:'Freedom', model:'Oslo', cat:'sofa', price:799, cond:'good', box:[55,46,31,12], pos:'lb'},
+  {name:'Soundbar', brand:'Sonos', model:'Beam Gen 2', cat:'tv', price:749, cond:'good', box:[62,44.5,16,4.5], pos:'lr'},
+  {name:'Arc floor lamp', brand:'Lighting Collective', model:'Arc', cat:'lighting', price:349, cond:'good', box:[5,15,19,57], pos:'lb'},
+  {name:'Framed art print', brand:'', model:'', cat:'art', price:420, cond:'good', box:[22,11,20,22]},
+  {name:'Wool area rug', brand:'Armadillo', model:'Sierra', cat:'carpet', price:1290, cond:'good', box:[22,82,56,15], pos:'lr'},
+  {name:'Coffee table', brand:'Globe West', model:'Halo', cat:'sofa', price:690, cond:'good', box:[33.5,71,27,13]},
+  {name:'Indoor plant & pot', brand:'', model:'', cat:'plant', price:180, cond:'good', box:[87,47,12,33], pos:'lb lr'},
+];
+function runDemoScan(mode, room){
+  const L = mode==='item' ? [DEMO_ROOM[1]] : mode==='receipt' ? [] : DEMO_ROOM;
+  if (mode!=='room'){ $('#hudl').textContent='Demo mode'; $('#scanres').innerHTML = `<div class="callout" style="margin-top:14px">In demo mode only the <b>room scan</b> is simulated. Connect a Claude API key in <a href="#account" onclick="closeModal()">Settings</a> to identify real items and receipts from your camera — or <a href="javascript:closeModal();addModal()">add one manually</a>.</div>`; return; }
+  let n = 0; const tick = () => { if (!$('#dets')) return; if (n < L.length){ const d=L[n]; $('#dets').insertAdjacentHTML('beforeend', `<div class="det ${d.pos||''}" style="left:${d.box[0]}%;top:${d.box[1]}%;width:${d.box[2]}%;height:${d.box[3]}%"><span>${esc(d.name)} · ${fmt(d.price)}</span></div>`); n++; $('#hudr').textContent = `${n} found`; setTimeout(tick, 420); } else { $('.beam')?.remove(); useScan(); showResults(L.map(({box,pos,...r})=>r), room, 'room', null, null); $('#hudl').textContent='✓ Demo scan complete'; } };
+  setTimeout(tick, 700);
+}
+function demoRoomSVG(){
+  return `<svg class="room" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9E4DA"/><stop offset="1" stop-color="#D9D2C5"/></linearGradient><linearGradient id="flr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B98B5E"/><stop offset="1" stop-color="#8E6740"/></linearGradient></defs>
+  <rect width="800" height="345" fill="url(#wall)"/><rect y="345" width="800" height="155" fill="url(#flr)"/>
+  <rect x="610" y="40" width="150" height="190" rx="6" fill="#CFE3EE" stroke="#F4F1EA" stroke-width="10"/><line x1="685" y1="40" x2="685" y2="230" stroke="#F4F1EA" stroke-width="6"/>
+  <rect x="180" y="62" width="155" height="100" rx="4" fill="#F7F3EC" stroke="#3B3B3B" stroke-width="6"/><circle cx="235" cy="105" r="22" fill="#E97A5B"/><rect x="250" y="110" width="60" height="34" fill="#2F6F73"/>
+  <rect x="465" y="112" width="200" height="112" rx="6" fill="#111"/><rect x="472" y="119" width="186" height="98" rx="3" fill="#1d2a4a"/><path d="M472 190 L540 150 L600 180 L658 140 L658 217 L472 217Z" fill="#2b4a7a" opacity=".7"/>
+  <rect x="445" y="228" width="245" height="62" rx="6" fill="#6B4E37"/><rect x="500" y="225" width="130" height="18" rx="5" fill="#222"/><rect x="455" y="252" width="110" height="30" rx="3" fill="#7d5c42"/><rect x="575" y="252" width="105" height="30" rx="3" fill="#7d5c42"/>
+  <line x1="78" y1="80" x2="78" y2="350" stroke="#2A2A2A" stroke-width="5"/><path d="M78 82 Q 120 40 160 90" stroke="#2A2A2A" stroke-width="5" fill="none"/><ellipse cx="160" cy="98" rx="26" ry="16" fill="#F4D58D"/><ellipse cx="78" cy="352" rx="28" ry="7" fill="#2A2A2A"/>
+  <rect x="135" y="268" width="350" height="70" rx="22" fill="#5C6B8A"/><rect x="150" y="235" width="320" height="65" rx="20" fill="#6E7EA0"/><rect x="128" y="250" width="40" height="95" rx="16" fill="#56647F"/><rect x="452" y="250" width="40" height="95" rx="16" fill="#56647F"/><rect x="170" y="252" width="90" height="40" rx="12" fill="#E8B04B"/>
+  <rect x="175" y="410" width="450" height="75" rx="10" fill="#E8DCC6"/><rect x="190" y="420" width="420" height="55" rx="6" fill="none" stroke="#CDBA98" stroke-width="3" stroke-dasharray="8 6"/>
+  <rect x="270" y="362" width="210" height="18" rx="9" fill="#C9A27A"/><rect x="290" y="378" width="10" height="40" fill="#8a6a4a"/><rect x="450" y="378" width="10" height="40" fill="#8a6a4a"/><circle cx="330" cy="356" r="9" fill="#fff"/>
+  <path d="M705 400 L725 345 L765 345 L785 400Z" fill="#C46A4A"/><path d="M745 345 C 700 300 690 260 720 240 C 735 280 745 300 745 345 C 750 290 770 250 800 245 C 790 290 770 320 745 345" fill="#3E8E5A"/></svg>`;
+}
+
+// ---------- Consumer rights: "It broke" ----------
+const ISSUES = [['dead','It stopped working completely'],['faulty','It works, but has a fault'],['unsafe','It\'s unsafe or dangerous'],['notdesc','It\'s not what was described or advertised']];
+function brokeModal(id){
+  const it = S.items.find(i=>i.id===id); const x=intel(it);
+  modal(`<h2>${esc(it.name)} broke?</h2><p class="muted">Three quick questions and Ownwise writes your request to ${esc(it.retailer||'the seller')}.</p>
+  <form class="stack" style="margin-top:14px" onsubmit="event.preventDefault();assess('${id}',this)">
+    <div><label class="f">1. What's the problem?</label>${ISSUES.map(([k,l],n)=>`<label class="opt"><input type="radio" name="issue" value="${k}" ${n===0?'checked':''}>${l}</label>`).join('')}</div>
+    <div><label class="f">2. Would you have bought it if you'd known?</label><label class="opt"><input type="radio" name="known" value="no" checked>No way</label><label class="opt"><input type="radio" name="known" value="yes">Probably — it's minor</label></div>
+    <div><label class="f">3. Can it be fixed easily and quickly?</label><label class="opt"><input type="radio" name="fix" value="no">No — or it's been repaired before</label><label class="opt"><input type="radio" name="fix" value="unsure" checked>Not sure / probably</label></div>
+    <div class="row"><button type="button" class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" style="margin-left:auto">See my rights</button></div></form>`);
+}
+function assess(id, f){
+  const it=S.items.find(i=>i.id===id); const x=intel(it); const issue=f.issue.value;
+  const major = issue==='unsafe' || issue==='notdesc' || f.known.value==='no' || f.fix.value==='no';
+  const label = ISSUES.find(i=>i[0]===issue)[1];
+  const letter = `${dstr(Date.now())}\n\nTo: ${it.retailer||'[Seller]'}\nRe: Consumer guarantee claim — ${[it.brand,it.name,it.model?`(${it.model})`:''].filter(Boolean).join(' ')}\n\nI purchased this item from you on ${dstr(it.date)} for ${fmt(num(it.price),2)}. Proof of purchase is attached${it.verified?', along with a time-stamped photo record of its condition':''}.\n\nThe problem: ${label.toLowerCase()}.\n\nUnder the Australian Consumer Law, goods must be of acceptable quality, including durable and free from defects, as a reasonable consumer would expect given their price and nature (s 54). This item is ${yrs(x.age)} old; a reasonable consumer would expect it to last considerably longer.\n\n${major?'As this is a major failure, I request a full refund or, at my election, a replacement.':'I request that you remedy this failure free of charge within a reasonable time.'} These rights apply regardless of any manufacturer's warranty (ss 259–263).\n\nPlease respond within 14 days. If we can't resolve this, I will contact ${STATES[S.me.state||'NSW']}.\n\nKind regards,\n${S.me.name||'[Your name]'}`;
+  modal(`<h2>${major?'Major failure — you choose the remedy':'Minor failure — the seller must fix it'}</h2>
+  <div class="callout ${major?'coral':''}" style="margin-top:8px">${major?'You can choose a <b>refund or replacement</b>. You don\'t have to accept a repair.':'The seller must repair, replace or refund <b>free, within a reasonable time</b>. If they don\'t, it can become a major failure.'}</div>
+  ${!x.inWarranty&&x.rightsLeft>0?`<div class="callout good" style="margin-top:10px">✅ Out of warranty, but within the ~${yrs(x.life)} it should reasonably last. Don't accept "it's out of warranty".</div>`:''}
+  ${x.rightsLeft<=0?`<div class="callout warn" style="margin-top:10px">It's past the ~${yrs(x.life)} it should reasonably last, so the seller may push back. Your fastest options:</div><div class="row wrap" style="gap:8px;margin-top:10px"><button class="btn primary" onclick="bookRepair('${id}')">🔧 Book a partner repairer</button><button class="btn" onclick="replaceModal('${id}')">🔁 See replacement deals</button></div>`:`<div class="muted" style="font-size:13px;margin-top:10px">Need it fixed today instead? <a href="javascript:bookRepair('${id}')">Book a partner repairer</a></div>`}
+  <div class="letter" id="letter" style="margin-top:14px">${esc(letter)}</div>
+  <div class="row wrap" style="margin-top:14px"><button class="btn" onclick="copyText('#letter')">${icon('copy')} Copy</button><button class="btn primary" style="margin-left:auto" onclick="S.claims.unshift({id:uid(),item:'${id}',date:todayISO(),major:${major}});S.done['claim-follow-${id}']=false;save();closeModal();toast('Sent ✓ — we\\'ll check in with you in 14 days')">I've sent it</button></div>
+  <p class="muted" style="font-size:12px;margin-top:10px">General information, not legal advice.</p>`);
+}
+function recallLetter(id){ const it=S.items.find(i=>i.id===id); const r=intel(it).recall; modal(`<h2>Recall refund request</h2><div class="letter" id="letter" style="margin-top:12px">${esc(`${dstr(Date.now())}\n\nTo: ${it.retailer}\nRe: Product safety recall — ${r.title}\n\nI purchased a ${it.brand} ${it.model} from you on ${dstr(it.date)} for ${fmt(num(it.price),2)}. It is the subject of a safety recall issued ${dstr(r.date)}: ${r.hazard}\n\nI have stopped using it. As set out in the recall, please arrange a full refund. Proof of purchase is attached.\n\nKind regards,\n${S.me.name||'[Your name]'}`)}</div><div class="row" style="margin-top:14px"><button class="btn" onclick="copyText('#letter')">${icon('copy')} Copy</button><button class="btn primary" style="margin-left:auto" onclick="closeModal()">Done</button></div>`); }
+function listingModal(id){
+  const it=S.items.find(i=>i.id===id); const x=intel(it); const ask=Math.max(5, Math.round(x.resale/5)*5);
+  const text = `${[it.brand, it.name].filter(Boolean).join(' ')}${it.model?` — ${it.model}`:''}\n\n$${ask.toLocaleString()} (about $${Math.round(x.replacement).toLocaleString()} new)\n\nBought ${new Date(it.date).toLocaleDateString('en-AU',{month:'long',year:'numeric'})}${it.retailer?` from ${it.retailer}`:''}. Well looked after and in great working order. Original receipt${it.verified?' and verified ownership record':''} available.\n\nPick up, or happy to arrange delivery.`;
+  modal(`<h2>Sell your ${esc(it.name)}</h2><p class="muted">Suggested price: <b>${fmt(ask)}</b> · waiting a year costs ~${fmt(x.lossNext12)}</p><div class="letter" id="letter" style="margin-top:12px">${esc(text)}</div><div class="row wrap" style="margin-top:14px"><button class="btn" onclick="copyText('#letter')">${icon('copy')} Copy listing</button><button class="btn" onclick="const i=S.items.find(i=>i.id==='${id}');i.status='sold';S.found.push({label:'Sold '+i.name,amount:${ask},date:todayISO()});save();closeModal();render();toast('Sold 🎉')">Mark as sold</button><button class="btn primary" style="margin-left:auto" onclick="closeModal()">Done</button></div>`);
+}
+function claimPack(){
+  if (!has('claimpack')) return paywall('claimpack');
+  const P = portfolio(); const rows = P.homeX.slice().sort((a,b)=>(a.room||'').localeCompare(b.room||''));
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Ownwise claim pack</title><style>body{font-family:system-ui,sans-serif;margin:32px;color:#111}table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:16px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}.n{text-align:right}img{width:48px;height:48px;object-fit:cover;border-radius:6px}.room td{background:#f2f2f8;font-weight:700}</style></head><body>
+  <h1 style="margin:0">Contents inventory & claim pack</h1><p>${esc(S.me.name||'')} · Generated by Ownwise ${dstr(Date.now())} · ${rows.length} items · Replacement value <b>${fmt(P.replacement)}</b> · Sum insured ${fmt(P.cover)}</p>
+  <table><thead><tr><th></th><th>Item</th><th>Brand / model</th><th>Acquired</th><th>From</th><th>Evidence</th><th class="n">Paid</th><th class="n">Replacement</th></tr></thead><tbody>
+  ${[...new Set(rows.map(r=>r.room))].map(room=>`<tr class="room"><td colspan="8">${esc(room)}</td></tr>`+rows.filter(r=>r.room===room).map(i=>`<tr><td>${i.photo?`<img src="${i.photo}" style="width:44px;height:44px;object-fit:cover;border-radius:6px">`:(CATS[i.cat]||CATS.other).e}</td><td>${esc(i.name)}</td><td>${esc(i.brand)} ${esc(i.model)}</td><td>${dstr(i.date)}</td><td>${esc(i.retailer)}</td><td>${i.verified?'Verified photo '+dstr(i.verified.at):'—'}</td><td class="n">${i.price?fmt(num(i.price),2):'—'}</td><td class="n">${fmt(i.x.replacement,2)}</td></tr>`).join('')).join('')}
+  </tbody></table></body></html>`;
+  if (EMBED){ window._cp = html; return modal(`<div class="row between"><h2>Claim pack</h2><button class="btn ghost" onclick="closeModal()">${icon('x')}</button></div><button class="btn primary" style="margin:8px 0 12px" onclick="download('ownwise-claim-pack.html', window._cp, 'text/html')">${icon('download')} Save claim pack (open & print from your phone)</button><div class="tablewrap">${html.split('<body>')[1].split('</body>')[0].replace('<h1 style="margin:0">Contents inventory & claim pack</h1>','')}</div>`); }
+  const w = window.open('', '_blank'); if (w){ w.document.write(html); w.document.close(); setTimeout(()=>{ try{ w.print(); }catch(e){} }, 400); } else download('ownwise-claim-pack.html', html, 'text/html');
+}
+
+// ---------- Onboarding ----------
+function onboarding(){
+  modal(`<div class="hero-pic" style="height:150px;background:var(--grad);font-size:0;margin-bottom:18px"><div style="width:76px;height:76px">${logo()}</div></div>
+  <h2 style="font-size:27px">Scan your home in 60 seconds.</h2>
+  <p class="muted" style="font-size:15px">Ownwise builds a verified, living register of everything you own — then keeps working for you:</p>
+  <div class="stack" style="margin:14px 0">
+    <div class="row"><span style="font-size:22px">☂️</span><div><b>Know your real insurance number</b> <span class="muted">and claim in one tap</span></div></div>
+    <div class="row"><span style="font-size:22px">🧾</span><div><b>Accountant-ready depreciation</b> <span class="muted">for rentals & business assets</span></div></div>
+    <div class="row"><span style="font-size:22px">⚖️</span><div><b>Your rights after warranty</b> <span class="muted">— and recall alerts</span></div></div>
+  </div>
+  <div class="fgrid"><div><label class="f">First name</label><input class="input" id="ob-name" placeholder="e.g. Kobi"></div><div><label class="f">State</label><select class="input" id="ob-state">${Object.keys(STATES).map(s=>`<option ${s==='VIC'?'selected':''}>${s}</option>`).join('')}</select></div></div>
+  <div class="stack" style="margin:14px 0"><label class="f" style="margin:0">What do you want to track?</label><div class="fgrid">${Object.entries(PLACE_TYPES).map(([k,v])=>`<label class="opt"><input type="checkbox" value="${k}" ${k!=='business'?'checked':''} class="ob-pt">${v.e} <b>${v.n}</b></label>`).join('')}</div></div>
+  <label class="row" style="margin-bottom:16px"><input type="checkbox" id="ob-demo" checked> Explore with a demo household first</label>
+  <button class="btn grad" style="width:100%;padding:14px;font-size:15px" onclick="finishOnboarding()">Get started</button>`);
+}
+function finishOnboarding(){
+  const d = $('#ob-demo').checked; S.me = {name:$('#ob-name').value.trim(), state:$('#ob-state').value, cover:d?60000:0, home:{beds:3, people:2, tier:'average'}};
+  if (d){ Object.assign(S, demo(), {plan:{tier:'free'}, usage:{}, rev:[]}); S.place='home'; }
+  else { const types=[...document.querySelectorAll('.ob-pt:checked')].map(x=>x.value); S.places = (types.length?types:['home']).map(t=>({id:uid(), type:t, name:PLACE_TYPES[t].n, sub:'', method:'dv'})); S.place=S.places[0].id; }
+  save(); closeModal(); nav('#/today'); render();
+}
+
+render();
+</script>
+</body>
+</html>
